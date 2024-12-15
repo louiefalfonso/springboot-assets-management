@@ -7,6 +7,9 @@ import demo.asset.management.repository.AssetRepository;
 import demo.asset.management.service.AssetService;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 public class AssetServiceImpl implements AssetService {
 
@@ -21,6 +24,21 @@ public class AssetServiceImpl implements AssetService {
         Asset asset = AssetMapper.mapToAsset(assetDto);
         Asset savedAssets = assetRepository.save(asset);
         return AssetMapper.mapToAssetDto(savedAssets);
+    }
+
+    // REST API - Get All Assets
+    @Override
+    public List<AssetDto> getAllAssets() {
+        List<Asset> assets = assetRepository.findAll();
+        return assets.stream().map((asset)-> AssetMapper.mapToAssetDto(asset))
+                .collect(Collectors.toList());
+    }
+
+    // REST API - Get Asset by Id
+    @Override
+    public AssetDto getAssetById(Long id) {
+        Asset asset = assetRepository.findById(id).orElseThrow(()->new RuntimeException("Assets does not exists"));
+        return AssetMapper.mapToAssetDto(asset);
     }
 
 }
