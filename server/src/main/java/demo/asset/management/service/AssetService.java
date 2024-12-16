@@ -12,5 +12,6 @@ public interface AssetService {
 
     AssetDto getAssetById(Long id);
 
+    void deleteAsset(Long id);
 
 }

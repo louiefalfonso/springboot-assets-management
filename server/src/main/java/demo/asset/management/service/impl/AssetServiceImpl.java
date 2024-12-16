@@ -34,11 +34,17 @@ public class AssetServiceImpl implements AssetService {
                 .collect(Collectors.toList());
     }
 
-    // REST API - Get Asset by Id
+    // REST API - Get Asset by ID
     @Override
     public AssetDto getAssetById(Long id) {
         Asset asset = assetRepository.findById(id).orElseThrow(()->new RuntimeException("Assets does not exists"));
         return AssetMapper.mapToAssetDto(asset);
     }
 
+    // REST API - Delete Asset By ID
+    @Override
+    public void deleteAsset(Long id) {
+        Asset asset = assetRepository.findById(id).orElseThrow(()-> new RuntimeException("Assets does not exists"));
+        assetRepository.deleteById(id);
+    }
 }

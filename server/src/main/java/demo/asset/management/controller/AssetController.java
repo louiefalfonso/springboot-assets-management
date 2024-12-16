@@ -18,24 +18,31 @@ public class AssetController {
         this.assetService = assetService;
     }
 
-    // Create New Assets REST API
+    // REST API - Create New Assets
     @PostMapping
     public ResponseEntity<AssetDto> createNewAssets(@RequestBody AssetDto assetDto){
         return new ResponseEntity<>(assetService.createNewAssets(assetDto), HttpStatus.CREATED);
     }
 
-    // Get All Assets REST API
+    // REST API - Get All Assets
     @GetMapping
     public ResponseEntity<List<AssetDto>> getAllAssets(){
         List<AssetDto> assets = assetService.getAllAssets();
         return ResponseEntity.ok(assets);
     }
 
-    // Get Asset By Id REST API
+    // REST API - Get Asset by ID
     @GetMapping("/{id}")
     public ResponseEntity<AssetDto> getAssetById(@PathVariable("id")Long id){
         AssetDto assetDto = assetService.getAssetById(id);
         return ResponseEntity.ok(assetDto);
+    }
+
+    // REST API - Delete Asset By ID
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> deleteAsset(@PathVariable("id") Long id){
+        assetService.deleteAsset(id);
+        return ResponseEntity.ok("Asset is deleted successfully!");
     }
 
 }
