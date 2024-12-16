@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/v1/accounts")
+@RequestMapping("/api/v1/assets")
 public class AssetController {
 
 
@@ -38,11 +38,19 @@ public class AssetController {
         return ResponseEntity.ok(assetDto);
     }
 
-    // REST API - Delete Asset By ID
+    // REST API - Delete Asset
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteAsset(@PathVariable("id") Long id){
         assetService.deleteAsset(id);
         return ResponseEntity.ok("Asset is deleted successfully!");
+    }
+
+    // REST API - Update Asset
+    @PutMapping("/{id}")
+    public  ResponseEntity<AssetDto> updateAsset(@PathVariable("id")Long id,
+                                                 @RequestBody AssetDto updatedAsset){
+        AssetDto assetDto = assetService.updateAsset(id, updatedAsset);
+        return ResponseEntity.ok(assetDto);
     }
 
 }

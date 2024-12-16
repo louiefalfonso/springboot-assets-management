@@ -14,4 +14,6 @@ public interface AssetService {
 
     void deleteAsset(Long id);
 
+    AssetDto updateAsset(Long id, AssetDto updatedAsset);
+
 }

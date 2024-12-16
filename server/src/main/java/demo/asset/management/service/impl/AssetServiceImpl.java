@@ -47,4 +47,21 @@ public class AssetServiceImpl implements AssetService {
         Asset asset = assetRepository.findById(id).orElseThrow(()-> new RuntimeException("Assets does not exists"));
         assetRepository.deleteById(id);
     }
+
+    // REST API - Update Asset By ID
+    @Override
+    public AssetDto updateAsset(Long id, AssetDto updatedAsset) {
+        Asset asset = assetRepository.findById(id).orElseThrow(()-> new RuntimeException("Assets does not exists"));
+
+        asset.setAssetNumber(updatedAsset.getAssetNumber());
+        asset.setBrand(updatedAsset.getBrand());
+        asset.setModel(updatedAsset.getModel());
+        asset.setType(updatedAsset.getType());
+        asset.setSerialNumber(updatedAsset.getSerialNumber());
+        asset.setLocation(updatedAsset.getLocation());
+        asset.setRackNumber(updatedAsset.getRackNumber());
+
+        Asset updatedAssetObj = assetRepository.save(asset);
+        return AssetMapper.mapToAssetDto(updatedAssetObj);
+    }
 }
