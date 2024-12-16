@@ -10,10 +10,9 @@ public interface AssetService {
 
     List<AssetDto> getAllAssets();
 
-    AssetDto getAssetById(Long id);
+    AssetDto getAssetById(Long assetId);
 
-    void deleteAsset(Long id);
+    AssetDto updateAsset(Long assetId, AssetDto updateAsset);
 
-    AssetDto updateAsset(Long id, AssetDto updatedAsset);
-
+    void deleteAsset(Long assetId);
 }

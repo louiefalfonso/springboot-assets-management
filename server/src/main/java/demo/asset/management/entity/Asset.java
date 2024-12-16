@@ -1,19 +1,16 @@
 package demo.asset.management.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.util.Date;
 
-@Getter
-@Setter
-@NoArgsConstructor
+@Data
 @AllArgsConstructor
+@NoArgsConstructor
 @Entity
+@Builder
 @Table(name = "assets")
 public class Asset {
 
@@ -46,14 +43,67 @@ public class Asset {
     @Column(updatable = false, name = "created_at")
     private Date created_at;
 
-    public Asset(
-            Long id,
-            String assetNumber,
-            String brand,
-            String type,
-            String serialNumber,
-            String location,
-            String model,
-            String rackNumber) {
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getAssetNumber() {
+        return assetNumber;
+    }
+
+    public void setAssetNumber(String assetNumber) {
+        this.assetNumber = assetNumber;
+    }
+
+    public String getBrand() {
+        return brand;
+    }
+
+    public void setBrand(String brand) {
+        this.brand = brand;
+    }
+
+    public String getModel() {
+        return model;
+    }
+
+    public void setModel(String model) {
+        this.model = model;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public String getSerialNumber() {
+        return serialNumber;
+    }
+
+    public void setSerialNumber(String serialNumber) {
+        this.serialNumber = serialNumber;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public String getRackNumber() {
+        return rackNumber;
+    }
+
+    public void setRackNumber(String rackNumber) {
+        this.rackNumber = rackNumber;
     }
 }

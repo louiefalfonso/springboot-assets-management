@@ -2,10 +2,12 @@ package demo.asset.management.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.Date;
 
 @Data
+@NoArgsConstructor
 @AllArgsConstructor
 public class AssetDto {
 
@@ -19,15 +21,4 @@ public class AssetDto {
     private String rackNumber;
     private Date created_at;
 
-
-    public AssetDto(
-            Long id,
-            String assetNumber,
-            String brand,
-            String type,
-            String serialNumber,
-            String location,
-            String model,
-            String rackNumber) {
-    }
 }
