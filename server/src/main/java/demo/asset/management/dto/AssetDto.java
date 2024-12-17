@@ -21,4 +21,31 @@ public class AssetDto {
     private String rackNumber;
     private Date created_at;
 
+    public String getAssetNumber() {
+        return assetNumber;
+    }
+
+    public String getBrand() {
+        return brand;
+    }
+
+    public String getModel() {
+        return model;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public String getSerialNumber() {
+        return serialNumber;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public String getRackNumber() {
+        return rackNumber;
+    }
 }

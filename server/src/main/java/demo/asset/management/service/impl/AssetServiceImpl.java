@@ -49,6 +49,12 @@ public class AssetServiceImpl implements AssetService {
                .orElseThrow(()->new RuntimeException("Asset doesn't exist with given id:" + assetId));
 
        asset.setAssetNumber(updateAsset.getAssetNumber());
+       asset.setBrand(updateAsset.getBrand());
+       asset.setModel(updateAsset.getModel());
+       asset.setType(updateAsset.getType());
+       asset.setSerialNumber(updateAsset.getSerialNumber());
+       asset.setLocation(updateAsset.getLocation());
+       asset.setRackNumber(updateAsset.getRackNumber());
 
        Asset updateAssetObj = assetRepository.save(asset);
        return modelMapper.map(updateAssetObj, AssetDto.class);

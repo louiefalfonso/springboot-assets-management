@@ -14,5 +14,7 @@ public interface AssetService {
 
     AssetDto updateAsset(Long assetId, AssetDto updateAsset);
 
+    //BookingDto updateBooking(Long bookingId, BookingDto updateBooking);
+
     void deleteAsset(Long assetId);
 }

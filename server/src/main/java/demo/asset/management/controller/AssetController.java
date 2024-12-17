@@ -56,6 +56,7 @@ public class AssetController {
         return ResponseEntity.ok("Asset Deleted Successfully");
     }
 
+
     // REST API - Update Asset
     @PutMapping("{id}")
     public ResponseEntity<AssetDto> updateAsset(@PathVariable("id") long id,
@@ -75,6 +76,8 @@ public class AssetController {
         AssetDto updatedAssetDto = modelMapper.map(updateAsset, AssetDto.class);
         return ResponseEntity.ok(updatedAssetDto);
     }
+
+
 
 
 }
