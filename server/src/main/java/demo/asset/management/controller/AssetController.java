@@ -32,6 +32,20 @@ public class AssetController {
         return new ResponseEntity<>(savedAsset, HttpStatus.CREATED);
     }
 
+    /*
+    // REST API - POST : Create New Assets
+    @PostMapping
+    public ResponseEntity<Object> createNewAssets(@RequestBody AssetDto assetDto){
+        if (assetRepository.existsByAssetNumber(assetDto.getAssetNumber())) {
+            ErrorResponse errorResponse = new ErrorResponse("Asset number already exists");
+            return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
+        } else {
+            AssetDto savedAsset = assetService.createNewAssets(assetDto);
+            return new ResponseEntity<>(savedAsset, HttpStatus.CREATED);
+        }
+    }
+     */
+
     // REST API - GET: Get All Assets
     @GetMapping
     public ResponseEntity<List<AssetDto>> getAllAssets(){

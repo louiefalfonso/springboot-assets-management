@@ -21,10 +21,14 @@ public class AssetServiceImpl implements AssetService {
     // REST API - Create New Assets
     @Override
     public AssetDto createNewAssets(AssetDto assetDto) {
+        if (assetRepository.existsByAssetNumber(assetDto.getAssetNumber())) {
+            throw new RuntimeException("Asset number already exists");
+        }
         Asset asset = modelMapper.map(assetDto, Asset.class);
         Asset savedAsset = assetRepository.save(asset);
         return modelMapper.map(savedAsset, AssetDto.class);
     }
+
 
     // REST API - Get All Assets
     @Override

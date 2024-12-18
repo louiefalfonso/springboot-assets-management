@@ -8,4 +8,6 @@ import java.util.Optional;
 public interface AssetRepository extends JpaRepository<Asset, Long> {
 
     Optional<Asset> findAllById(Long AssetId);
+
+    boolean existsByAssetNumber(String assetNumber);
 }
