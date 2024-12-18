@@ -9,6 +9,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.ErrorResponse;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -25,6 +26,7 @@ public class AssetController {
     private ModelMapper modelMapper;
 
 
+/*
     // REST API - POST : Create New Assets
     @PostMapping
     public ResponseEntity<AssetDto> createNewAssets(@RequestBody AssetDto assetDto){
@@ -32,19 +34,29 @@ public class AssetController {
         return new ResponseEntity<>(savedAsset, HttpStatus.CREATED);
     }
 
-    /*
+ */
+
     // REST API - POST : Create New Assets
     @PostMapping
-    public ResponseEntity<Object> createNewAssets(@RequestBody AssetDto assetDto){
-        if (assetRepository.existsByAssetNumber(assetDto.getAssetNumber())) {
-            ErrorResponse errorResponse = new ErrorResponse("Asset number already exists");
-            return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
-        } else {
+    public ResponseEntity<AssetDto> createNewAssets(@RequestBody AssetDto assetDto) {
+        try {
+            // Check if the asset with the given assetNumber already exists
+            if (assetRepository.existsByAssetNumber(assetDto.getAssetNumber())) {
+                AssetDto errorResponse = new AssetDto();
+                errorResponse.setErrorMessage("Asset with assetNumber " + assetDto.getAssetNumber() + " already exists.");
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse); // Return errorResponse
+            }
+
+            // Create new asset if it doesn't exist
             AssetDto savedAsset = assetService.createNewAssets(assetDto);
             return new ResponseEntity<>(savedAsset, HttpStatus.CREATED);
+        } catch (RuntimeException e) {
+            // Handle other runtime exceptions
+            AssetDto errorResponse = new AssetDto();
+            errorResponse.setErrorMessage("An error occurred: " + e.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorResponse);
         }
     }
-     */
 
     // REST API - GET: Get All Assets
     @GetMapping
@@ -60,14 +72,6 @@ public class AssetController {
         Asset asset = assetRepository.findAllById(id)
                 .orElseThrow(()-> new RuntimeException("Asset does not exist with Id:" + id));
         return ResponseEntity.ok(asset);
-    }
-
-
-    // REST API - DELETE: Delete Asset
-    @DeleteMapping("{id}")
-    public ResponseEntity<String> deleteAsset(@PathVariable("id") Long assetId){
-        assetService.deleteAsset(assetId);
-        return ResponseEntity.ok("Asset Deleted Successfully");
     }
 
 
@@ -91,7 +95,11 @@ public class AssetController {
         return ResponseEntity.ok(updatedAssetDto);
     }
 
-
-
+    // REST API - DELETE: Delete Asset
+    @DeleteMapping("{id}")
+    public ResponseEntity<String> deleteAsset(@PathVariable("id") Long assetId){
+        assetService.deleteAsset(assetId);
+        return ResponseEntity.ok("Asset Deleted Successfully");
+    }
 
 }

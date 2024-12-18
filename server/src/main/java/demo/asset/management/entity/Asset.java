@@ -11,6 +11,8 @@ import java.util.Date;
 @NoArgsConstructor
 @Entity
 @Builder
+@Getter
+@Setter
 @Table(name = "assets")
 public class Asset {
 

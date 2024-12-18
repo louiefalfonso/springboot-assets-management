@@ -20,6 +20,7 @@ public class AssetDto {
     private String location;
     private String rackNumber;
     private Date created_at;
+    private String errorMessage;
 
     public String getAssetNumber() {
         return assetNumber;
@@ -47,5 +48,9 @@ public class AssetDto {
 
     public String getRackNumber() {
         return rackNumber;
+    }
+
+    public void setErrorMessage(String errorMessage) {
+        this.errorMessage = errorMessage;
     }
 }
