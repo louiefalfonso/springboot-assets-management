@@ -4,9 +4,7 @@ import asset_management.assetmanagement.dto.AssetDto;
 import asset_management.assetmanagement.entity.Asset;
 import asset_management.assetmanagement.repository.AssetRepository;
 import asset_management.assetmanagement.service.AssetService;
-import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -34,7 +32,6 @@ public class AssetServiceImpl implements AssetService {
         return modelMapper.map(savedAsset, AssetDto.class);
     }
 
-
     // REST API - Get All Assets
     @Override
     public List<AssetDto> getAllAssets() {
@@ -43,7 +40,7 @@ public class AssetServiceImpl implements AssetService {
                 .collect(Collectors.toList());
     }
 
-    // REST API - Get Asset By Id
+    // REST API - Get Asset By ID
     @Override
     public AssetDto getAssetById (Long assetId) {
        Asset asset = assetRepository.findAllById(assetId)
@@ -51,5 +48,30 @@ public class AssetServiceImpl implements AssetService {
        return modelMapper.map(asset, AssetDto.class);
     }
 
+    // REST API - Update Asset
+    @Override
+    public AssetDto updateAsset(Long assetId, AssetDto updateAsset) {
+        Asset asset = assetRepository.findAllById(assetId)
+                .orElseThrow(()-> new RuntimeException("Asset doesn't exist with a given Id:" + assetId));
+
+        asset.setAssetNumber(updateAsset.getAssetNumber());
+        asset.setBrand(updateAsset.getBrand());
+        asset.setModel(updateAsset.getModel());
+        asset.setType(updateAsset.getType());
+        asset.setSerialNumber(updateAsset.getSerialNumber());
+        asset.setLocation(updateAsset.getLocation());
+        asset.setRackNumber(updateAsset.getRackNumber());
+
+        Asset updateAssetObj = assetRepository.save(asset);
+        return modelMapper.map(updateAssetObj,AssetDto.class);
+    }
+
+    // REST API - Delete Asset
+    @Override
+    public void deleteAsset(Long assetId) {
+        Asset asset = assetRepository.findAllById(assetId)
+                .orElseThrow(()-> new RuntimeException("Asset doesn't exist with given id:" + assetId));
+        assetRepository.deleteById(assetId);
+    }
 
 }

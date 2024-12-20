@@ -22,6 +22,9 @@ public class AssetDto {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "MM-dd-yyyy")
     private LocalDate createdDate;
 
+
+    //Getters & Setters
+
     public Long getId() {
         return id;
     }

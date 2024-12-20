@@ -9,7 +9,6 @@ import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 
-
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -47,7 +46,6 @@ public class Asset {
     private LocalDate createdDate;
 
     //Getters & Setters
-
 
     public Long getId() {
         return id;

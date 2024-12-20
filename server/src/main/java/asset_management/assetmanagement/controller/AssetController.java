@@ -45,4 +45,30 @@ public class AssetController {
         return ResponseEntity.ok(asset);
     }
 
+    //UPDATE - Update Asset REST API
+    @PutMapping("{id}")
+    public ResponseEntity<Asset> updateAsset(@PathVariable("id") long id,
+                                             @RequestBody Asset assetDetails){
+        Asset updateAsset = assetRepository.findById(id)
+                .orElseThrow(()->new RuntimeException("Asset does not exist with id: " + id));
+
+        updateAsset.setAssetNumber(assetDetails.getAssetNumber());
+        updateAsset.setBrand(assetDetails.getBrand());
+        updateAsset.setModel(assetDetails.getModel());
+        updateAsset.setType(assetDetails.getType());
+        updateAsset.setSerialNumber(assetDetails.getSerialNumber());
+        updateAsset.setLocation(assetDetails.getLocation());
+        updateAsset.setRackNumber(assetDetails.getRackNumber());
+
+        assetRepository.save(updateAsset);
+        return ResponseEntity.ok(updateAsset);
+    }
+
+    //DELETE - Delete Asset REST API
+    @DeleteMapping("{id}")
+    public ResponseEntity<String> deleteAsset(@PathVariable("id") Long assetId){
+        assetService.deleteAsset(assetId);
+        return ResponseEntity.ok("Asset Deleted Successfully");
+    }
+
 }
