@@ -1,5 +1,6 @@
 package asset_management.assetmanagement.dto;
 
+import asset_management.assetmanagement.entity.WarrantyStatus;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -20,6 +21,7 @@ public class WarrantyStatusDto {
     private LocalDate warrantyExpiry;
 
     private AssetDto asset;
+
 
     public Long getId() {
         return id;

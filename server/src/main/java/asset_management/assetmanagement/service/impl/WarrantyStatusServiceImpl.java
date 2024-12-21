@@ -44,5 +44,26 @@ public class WarrantyStatusServiceImpl implements WarrantyStatusService {
                 .orElseThrow(()-> new RuntimeException("Warranty Status doesn't exist with a given Id:" + wStatusId));
         return  modelMapper.map(warrantyStatus, WarrantyStatusDto.class);
     }
-    
+
+    // REST API - Update Warranty Status
+    @Override
+    public WarrantyStatusDto updateWarrantyStatus(Long wStatusId, WarrantyStatusDto updateWarrantyStatus) {
+        WarrantyStatus warrantyStatus = warrantyStatusRepository.findAllById(wStatusId)
+                .orElseThrow(()-> new RuntimeException("Warranty Status doesn't exist with a given Id:" + wStatusId));
+
+        warrantyStatus.setStatus(updateWarrantyStatus.getStatus());
+        warrantyStatus.setWarrantyExpiry(updateWarrantyStatus.getWarrantyExpiry());
+
+        WarrantyStatus updateWarrantyStatusObj = warrantyStatusRepository.save(warrantyStatus);
+        return modelMapper.map(updateWarrantyStatusObj, WarrantyStatusDto.class);
+    }
+
+    // REST API - Delete Warranty Status
+    @Override
+    public void deleteWarrantyStatus(Long wStatusId) {
+        WarrantyStatus warrantyStatus = warrantyStatusRepository.findAllById(wStatusId)
+                .orElseThrow(()->new RuntimeException("Warranty Status  doesn't exist with given id:" + wStatusId));
+        warrantyStatusRepository.deleteById(wStatusId);
+    }
+
 }

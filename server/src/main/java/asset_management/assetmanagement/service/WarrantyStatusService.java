@@ -12,4 +12,7 @@ public interface WarrantyStatusService {
 
     WarrantyStatusDto  getWarrantyStatusById (Long wStatusId);
 
+    WarrantyStatusDto updateWarrantyStatus (Long wStatusId, WarrantyStatusDto updateWarrantyStatus);
+
+    void deleteWarrantyStatus (Long wStatusId);
 }

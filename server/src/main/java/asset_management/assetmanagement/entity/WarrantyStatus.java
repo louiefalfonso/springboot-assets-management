@@ -28,7 +28,7 @@ public class WarrantyStatus {
     @Column(name = "status")
     private String status;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "asset_id")
     private Asset asset;
 

@@ -1,6 +1,7 @@
 package asset_management.assetmanagement.controller;
 
 import asset_management.assetmanagement.dto.WarrantyStatusDto;
+import asset_management.assetmanagement.entity.WarrantyStatus;
 import asset_management.assetmanagement.repository.WarrantyStatusRepository;
 import asset_management.assetmanagement.service.WarrantyStatusService;
 import org.springframework.http.HttpStatus;
@@ -41,6 +42,27 @@ public class WarrantyStatusController {
     public ResponseEntity<WarrantyStatusDto> getWarrantyStatusById(@PathVariable("id") Long id){
         WarrantyStatusDto wStatusDto = warrantyStatusService.getWarrantyStatusById(id);
         return ResponseEntity.ok(wStatusDto);
+    }
+
+    //UPDATE - Update Warranty Status REST API
+    @PutMapping("{id}")
+    public ResponseEntity<WarrantyStatus> updateWarrantyStatus (@PathVariable("id") long id,
+                                                                   @RequestBody WarrantyStatus wStatusDetails) {
+        WarrantyStatus updateWarrantyStatus = warrantyStatusRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Warranty Status does not exist with id: " + id));
+
+        updateWarrantyStatus.setWarrantyExpiry(wStatusDetails.getWarrantyExpiry());
+        updateWarrantyStatus.setStatus(wStatusDetails.getStatus());
+
+        warrantyStatusRepository.save(updateWarrantyStatus);
+        return ResponseEntity.ok(updateWarrantyStatus);
+    }
+
+    //DELETE - Delete Warranty Status REST API
+    @DeleteMapping("{id}")
+    public ResponseEntity<String> deleteWarrantyStatus(@PathVariable("id") Long wStatusId){
+        warrantyStatusService.deleteWarrantyStatus(wStatusId);
+        return ResponseEntity.ok("Warranty Status Deleted Successfully");
     }
 
 }
