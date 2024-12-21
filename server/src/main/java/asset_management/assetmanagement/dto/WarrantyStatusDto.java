@@ -21,8 +21,35 @@ public class WarrantyStatusDto {
 
     private AssetDto asset;
 
-    //Getters & Setters
+    public Long getId() {
+        return id;
+    }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
 
+    public String getStatus() {
+        return status;
+    }
 
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public LocalDate getWarrantyExpiry() {
+        return warrantyExpiry;
+    }
+
+    public void setWarrantyExpiry(LocalDate warrantyExpiry) {
+        this.warrantyExpiry = warrantyExpiry;
+    }
+
+    public AssetDto getAsset() {
+        return asset;
+    }
+
+    public void setAsset(AssetDto asset) {
+        this.asset = asset;
+    }
 }
