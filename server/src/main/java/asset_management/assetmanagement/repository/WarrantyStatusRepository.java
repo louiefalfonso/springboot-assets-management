@@ -8,5 +8,4 @@ import java.util.Optional;
 public interface WarrantyStatusRepository extends JpaRepository<WarrantyStatus, Long> {
 
     Optional<WarrantyStatus> findAllById(Long WarrantyStatusId);
-
 }
