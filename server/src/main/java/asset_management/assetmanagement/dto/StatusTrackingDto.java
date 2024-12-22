@@ -1,29 +1,19 @@
-package asset_management.assetmanagement.entity;
+package asset_management.assetmanagement.dto;
 
-import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity
-@Builder
-@Table(name = "status tracking")
-public class StatusTracking {
+public class StatusTrackingDto {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "status")
     private String status;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "asset_id")
-    private Asset asset;
+    private AssetDto asset;
 
     //Getters & Setters
 
@@ -43,11 +33,11 @@ public class StatusTracking {
         this.status = status;
     }
 
-    public Asset getAsset() {
+    public AssetDto getAsset() {
         return asset;
     }
 
-    public void setAsset(Asset asset) {
+    public void setAsset(AssetDto asset) {
         this.asset = asset;
     }
 }
