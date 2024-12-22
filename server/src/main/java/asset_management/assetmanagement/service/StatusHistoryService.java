@@ -12,5 +12,7 @@ public interface StatusHistoryService {
 
     StatusHistoryDto getStatusHistoryById(Long sHistoryId);
 
-    StatusHistoryDto updateStatusHistory (Long sHistoryId, StatusHistoryDto updateWarrantyStatus);
+    StatusHistoryDto updateStatusHistory(Long sHistoryId, StatusHistoryDto updateWarrantyStatus);
+
+    void deleteStatusHistory(Long sHistoryId);
 }

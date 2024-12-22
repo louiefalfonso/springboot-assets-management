@@ -59,4 +59,12 @@ public class StatusHistoryServiceImpl implements StatusHistoryService {
         return modelMapper.map(updateStatusHistoryObj, StatusHistoryDto.class);
     }
 
+    // REST API - Delete Status History
+    @Override
+    public void deleteStatusHistory(Long sHistoryId) {
+        StatusHistory statusHistory = statusHistoryRepository.findAllById(sHistoryId)
+                .orElseThrow(()->new RuntimeException("Status History  doesn't exist with given id:" + sHistoryId));
+        statusHistoryRepository.deleteById(sHistoryId);
+    }
+
 }
