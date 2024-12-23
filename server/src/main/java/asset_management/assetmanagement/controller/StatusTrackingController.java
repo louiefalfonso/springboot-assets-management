@@ -7,6 +7,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @CrossOrigin("*")
 @RestController
 @RequestMapping("/api/v1/statustracking")
@@ -27,5 +29,11 @@ public class StatusTrackingController {
         return new ResponseEntity<>(savedStatusTracking, HttpStatus.CREATED);
     }
 
+    //GET - Get All Status Tracking REST API
+    @GetMapping
+    public ResponseEntity<List<StatusTrackingDto>> getAllStatusTracking(){
+        List<StatusTrackingDto> statusTracking = statusTrackingService.getAllStatusTracking();
+        return ResponseEntity.ok(statusTracking);
+    }
 
 }
