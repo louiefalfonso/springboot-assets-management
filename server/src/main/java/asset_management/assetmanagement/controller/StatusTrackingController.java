@@ -1,6 +1,7 @@
 package asset_management.assetmanagement.controller;
 
 import asset_management.assetmanagement.dto.StatusTrackingDto;
+import asset_management.assetmanagement.entity.StatusTracking;
 import asset_management.assetmanagement.repository.StatusTrackingRepository;
 import asset_management.assetmanagement.service.StatusTrackingService;
 import org.springframework.http.HttpStatus;
@@ -36,4 +37,30 @@ public class StatusTrackingController {
         return ResponseEntity.ok(statusTracking);
     }
 
+    //GET - Get Status Tracking By ID REST API
+    @GetMapping("{id}")
+    public ResponseEntity<StatusTrackingDto> getStatusTrackingById(@PathVariable ("id") Long id){
+        StatusTrackingDto sTrackingDto = statusTrackingService.getStatusTrackingById(id);
+        return ResponseEntity.ok(sTrackingDto);
+    }
+
+    //UPDATE - Update Status Tracking REST API
+    @PutMapping("{id}")
+    public ResponseEntity<StatusTracking> updateStatusTracking(@PathVariable("id") long id,
+                                                               @RequestBody StatusTracking sTrackingDetails){
+        StatusTracking updateStatusTracking = statusTrackingRepository.findById(id)
+                .orElseThrow(()->new RuntimeException("Status Tracking does not exist with id: " + id));
+
+        updateStatusTracking.setStatus(sTrackingDetails.getStatus());
+
+        statusTrackingRepository.save(updateStatusTracking);
+        return ResponseEntity.ok(updateStatusTracking);
+    }
+
+
+    @DeleteMapping("{id}")
+    public ResponseEntity<String> deleteStatusTracking(@PathVariable("id") Long sTrackingId){
+        statusTrackingService.deleteStatusTracking(sTrackingId);
+        return ResponseEntity.ok("Status Tracking Deleted Successfully");
+    }
 }

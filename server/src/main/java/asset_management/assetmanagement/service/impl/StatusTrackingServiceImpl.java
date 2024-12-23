@@ -37,5 +37,33 @@ public class StatusTrackingServiceImpl implements StatusTrackingService {
                 .collect(Collectors.toList());
     }
 
+    // REST API - Get Status Tracking By ID
+    @Override
+    public StatusTrackingDto getStatusTrackingById(Long sTrackingId) {
+        StatusTracking statusTracking = statusTrackingRepository.findAllById(sTrackingId)
+                .orElseThrow(()->new RuntimeException("Status Tracking doesn't exist with a given Id:" + sTrackingId));
+        return modelMapper.map(statusTracking, StatusTrackingDto.class);
+    }
+
+    // REST API - Update Status Tracking
+    @Override
+    public StatusTrackingDto updateStatusTracking(Long sTrackingId, StatusTrackingDto updateWarrantyStatus) {
+        StatusTracking statusTracking = statusTrackingRepository.findAllById(sTrackingId)
+                .orElseThrow(()-> new RuntimeException("Status Tracking doesn't exist with a given Id:" + sTrackingId));
+
+        statusTracking.setStatus(updateWarrantyStatus.getStatus());
+
+        StatusTracking updateStatusTrackingObj = statusTrackingRepository.save(statusTracking);
+        return modelMapper.map(updateStatusTrackingObj, StatusTrackingDto.class);
+
+    }
+
+    // REST API - Delete Status Tracking
+    @Override
+    public void deleteStatusTracking(Long sTrackingId) {
+        StatusTracking statusTracking = statusTrackingRepository.findAllById(sTrackingId)
+                .orElseThrow(()-> new RuntimeException("Status Tracking  doesn't exist with given id:" + sTrackingId));
+        statusTrackingRepository.deleteById(sTrackingId);
+    }
 
 }
