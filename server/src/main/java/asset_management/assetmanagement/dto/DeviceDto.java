@@ -8,20 +8,19 @@ import lombok.NoArgsConstructor;
 import java.util.Date;
 
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
-public class StatusHistoryDto {
+@NoArgsConstructor
+public class DeviceDto {
 
     private Long id;
-
-    private String status;
-
-    private AssetDto asset;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "MM-dd-yyyy")
     private Date dateUpdated;
 
-    //Getters & Setters
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "MM-dd-yyyy")
+    private Date dateCreated;
+
+    private AssetDto asset;
 
     public Long getId() {
         return id;
@@ -31,12 +30,20 @@ public class StatusHistoryDto {
         this.id = id;
     }
 
-    public String getStatus() {
-        return status;
+    public Date getDateUpdated() {
+        return dateUpdated;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public void setDateUpdated(Date dateUpdated) {
+        this.dateUpdated = dateUpdated;
+    }
+
+    public Date getDateCreated() {
+        return dateCreated;
+    }
+
+    public void setDateCreated(Date dateCreated) {
+        this.dateCreated = dateCreated;
     }
 
     public AssetDto getAsset() {
@@ -45,13 +52,5 @@ public class StatusHistoryDto {
 
     public void setAsset(AssetDto asset) {
         this.asset = asset;
-    }
-
-    public Date getDateUpdated() {
-        return dateUpdated;
-    }
-
-    public void setDateUpdated(Date dateUpdated) {
-        this.dateUpdated = dateUpdated;
     }
 }

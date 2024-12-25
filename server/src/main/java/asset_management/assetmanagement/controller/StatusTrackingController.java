@@ -58,6 +58,7 @@ public class StatusTrackingController {
     }
 
 
+    //DELETE - Delete Status Tracking REST API
     @DeleteMapping("{id}")
     public ResponseEntity<String> deleteStatusTracking(@PathVariable("id") Long sTrackingId){
         statusTrackingService.deleteStatusTracking(sTrackingId);
