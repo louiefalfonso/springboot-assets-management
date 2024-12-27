@@ -1,6 +1,8 @@
 package asset_management.assetmanagement.service.impl;
 
+import asset_management.assetmanagement.dto.AssetDto;
 import asset_management.assetmanagement.dto.DeviceDto;
+import asset_management.assetmanagement.entity.Device;
 import asset_management.assetmanagement.repository.AssetRepository;
 import asset_management.assetmanagement.repository.DeviceRepository;
 import asset_management.assetmanagement.service.DeviceService;
@@ -20,8 +22,15 @@ public class DeviceServiceImpl implements DeviceService {
         this.modelMapper = modelMapper;
     }
 
+    // REST API - Create New Device
     @Override
     public DeviceDto createNewDevice(DeviceDto deviceDto) {
-        return null;
+       /* if (assetRepository.existsByAssetNumber(assetDto.getAssetNumber())) {
+            throw new RuntimeException("Asset number already exists");
+        }*/
+        Device device = modelMapper.map(deviceDto, Device.class);
+        Device savedDevice = deviceRepository.save(device);
+        return modelMapper.map(savedDevice, DeviceDto.class);
     }
+
 }

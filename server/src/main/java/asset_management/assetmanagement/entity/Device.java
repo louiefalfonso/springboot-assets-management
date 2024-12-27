@@ -37,10 +37,6 @@ public class Device {
     @JoinColumn(name = "asset_id")
     private Asset asset;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "statusTracking_id")
-    private StatusTracking statusTracking;
-
     //Getters & Setters
 
     public Long getId() {
@@ -75,11 +71,4 @@ public class Device {
         this.asset = asset;
     }
 
-    public StatusTracking getStatusTracking() {
-        return statusTracking;
-    }
-
-    public void setStatusTracking(StatusTracking statusTracking) {
-        this.statusTracking = statusTracking;
-    }
 }
