@@ -53,4 +53,6 @@ public class DeviceDto {
     public void setAsset(AssetDto asset) {
         this.asset = asset;
     }
+
+
 }

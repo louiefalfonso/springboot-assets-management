@@ -9,6 +9,9 @@ import asset_management.assetmanagement.service.DeviceService;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 public class DeviceServiceImpl implements DeviceService {
 
@@ -31,6 +34,14 @@ public class DeviceServiceImpl implements DeviceService {
         Device device = modelMapper.map(deviceDto, Device.class);
         Device savedDevice = deviceRepository.save(device);
         return modelMapper.map(savedDevice, DeviceDto.class);
+    }
+
+    // REST API - Get All Devices
+    @Override
+    public List<DeviceDto> getAllDevices() {
+        List<Device> devices = deviceRepository.findAll();
+        return devices.stream().map((device)-> modelMapper.map(device, DeviceDto.class))
+                .collect(Collectors.toList());
     }
 
 }
