@@ -1,9 +1,11 @@
 package asset_management.assetmanagement.dto;
 
+import asset_management.assetmanagement.entity.StatusHistory;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -22,8 +24,11 @@ public class AssetDto {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "MM-dd-yyyy")
     private LocalDate createdDate;
 
+    private List<StatusHistory> statusHistory;
+
 
     //Getters & Setters
+
 
     public Long getId() {
         return id;
@@ -95,5 +100,13 @@ public class AssetDto {
 
     public void setCreatedDate(LocalDate createdDate) {
         this.createdDate = createdDate;
+    }
+
+    public List<StatusHistory> getStatusHistory() {
+        return statusHistory;
+    }
+
+    public void setStatusHistory(List<StatusHistory> statusHistory) {
+        this.statusHistory = statusHistory;
     }
 }
