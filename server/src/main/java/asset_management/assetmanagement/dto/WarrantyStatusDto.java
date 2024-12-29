@@ -20,7 +20,7 @@ public class WarrantyStatusDto {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "MM-dd-yyyy")
     private LocalDate warrantyExpiry;
 
-    private AssetDto asset;
+    private Long assetId;
 
 
     public Long getId() {
@@ -47,11 +47,11 @@ public class WarrantyStatusDto {
         this.warrantyExpiry = warrantyExpiry;
     }
 
-    public AssetDto getAsset() {
-        return asset;
+    public Long getAssetId() {
+        return assetId;
     }
 
-    public void setAsset(AssetDto asset) {
-        this.asset = asset;
+    public void setAssetId(Long assetId) {
+        this.assetId = assetId;
     }
 }

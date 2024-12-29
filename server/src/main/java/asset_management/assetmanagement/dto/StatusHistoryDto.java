@@ -16,10 +16,11 @@ public class StatusHistoryDto {
 
     private String status;
 
-    private AssetDto asset;
-
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "MM-dd-yyyy")
     private Date dateUpdated;
+
+    private Long assetId;
+
 
     //Getters & Setters
 
@@ -39,19 +40,19 @@ public class StatusHistoryDto {
         this.status = status;
     }
 
-    public AssetDto getAsset() {
-        return asset;
-    }
-
-    public void setAsset(AssetDto asset) {
-        this.asset = asset;
-    }
-
     public Date getDateUpdated() {
         return dateUpdated;
     }
 
     public void setDateUpdated(Date dateUpdated) {
         this.dateUpdated = dateUpdated;
+    }
+
+    public Long getAssetId() {
+        return assetId;
+    }
+
+    public void setAssetId(Long assetId) {
+        this.assetId = assetId;
     }
 }

@@ -51,10 +51,17 @@ public class Asset {
     @JsonIgnore
     private List<StatusHistory> statusHistory;
 
+    @OneToMany(mappedBy = "asset", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonIgnore
+    private List<StatusTracking> statusTracking;
+
+    @OneToMany(mappedBy = "asset", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonIgnore
+    private List<WarrantyStatus> warrantyStatus;
+
 
 
     //Getters & Setters
-
 
     public Long getId() {
         return id;
@@ -134,5 +141,21 @@ public class Asset {
 
     public void setStatusHistory(List<StatusHistory> statusHistory) {
         this.statusHistory = statusHistory;
+    }
+
+    public List<StatusTracking> getStatusTracking() {
+        return statusTracking;
+    }
+
+    public void setStatusTracking(List<StatusTracking> statusTracking) {
+        this.statusTracking = statusTracking;
+    }
+
+    public List<WarrantyStatus> getWarrantyStatus() {
+        return warrantyStatus;
+    }
+
+    public void setWarrantyStatus(List<WarrantyStatus> warrantyStatus) {
+        this.warrantyStatus = warrantyStatus;
     }
 }

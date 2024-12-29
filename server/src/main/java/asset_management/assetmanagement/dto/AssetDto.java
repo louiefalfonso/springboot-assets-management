@@ -24,11 +24,11 @@ public class AssetDto {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "MM-dd-yyyy")
     private LocalDate createdDate;
 
-    private List<StatusHistory> statusHistory;
-
+    private List<StatusHistoryDto> statusHistory;
+    private List<StatusTrackingDto> statusTracking;
+    private List<WarrantyStatusDto> warrantyStatus;
 
     //Getters & Setters
-
 
     public Long getId() {
         return id;
@@ -102,11 +102,27 @@ public class AssetDto {
         this.createdDate = createdDate;
     }
 
-    public List<StatusHistory> getStatusHistory() {
+    public List<StatusHistoryDto> getStatusHistory() {
         return statusHistory;
     }
 
-    public void setStatusHistory(List<StatusHistory> statusHistory) {
+    public void setStatusHistory(List<StatusHistoryDto> statusHistory) {
         this.statusHistory = statusHistory;
+    }
+
+    public List<StatusTrackingDto> getStatusTracking() {
+        return statusTracking;
+    }
+
+    public void setStatusTracking(List<StatusTrackingDto> statusTracking) {
+        this.statusTracking = statusTracking;
+    }
+
+    public List<WarrantyStatusDto> getWarrantyStatus() {
+        return warrantyStatus;
+    }
+
+    public void setWarrantyStatus(List<WarrantyStatusDto> warrantyStatus) {
+        this.warrantyStatus = warrantyStatus;
     }
 }

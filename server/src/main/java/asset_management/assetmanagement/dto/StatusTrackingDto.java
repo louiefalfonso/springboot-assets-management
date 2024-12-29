@@ -13,7 +13,7 @@ public class StatusTrackingDto {
 
     private String status;
 
-    private AssetDto asset;
+    private Long assetId;
 
     //Getters & Setters
 
@@ -33,11 +33,11 @@ public class StatusTrackingDto {
         this.status = status;
     }
 
-    public AssetDto getAsset() {
-        return asset;
+    public Long getAssetId() {
+        return assetId;
     }
 
-    public void setAsset(AssetDto asset) {
-        this.asset = asset;
+    public void setAssetId(Long assetId) {
+        this.assetId = assetId;
     }
 }
