@@ -2,6 +2,7 @@ package asset_management.assetmanagement.controller;
 
 import asset_management.assetmanagement.dto.AssetDto;
 import asset_management.assetmanagement.dto.DeviceDto;
+import asset_management.assetmanagement.entity.Device;
 import asset_management.assetmanagement.repository.DeviceRepository;
 import asset_management.assetmanagement.service.DeviceService;
 import org.springframework.http.HttpStatus;
@@ -35,6 +36,16 @@ public class DeviceController {
     public ResponseEntity<List<DeviceDto>> getAllDevices(){
         List<DeviceDto> device = deviceService.getAllDevices();
         return ResponseEntity.ok(device);
+    }
+
+    //GET - Get Device By ID REST API
+    @GetMapping("{id}")
+    public ResponseEntity<Device> getDeviceById(@PathVariable("id") Long id){
+        Device device = deviceRepository.findAllById(id)
+                .orElseThrow(()-> new RuntimeException("Device does not exist with Id:" + id));
+        return ResponseEntity.ok(device);
+
+
     }
 
 }

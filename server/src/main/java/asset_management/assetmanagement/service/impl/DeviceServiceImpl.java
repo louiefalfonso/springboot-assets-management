@@ -44,4 +44,12 @@ public class DeviceServiceImpl implements DeviceService {
                 .collect(Collectors.toList());
     }
 
+    // REST API - Get Device By ID
+    @Override
+    public DeviceDto getDeviceById(Long deviceId) {
+        Device device = deviceRepository.findAllById(deviceId)
+                .orElseThrow(()-> new RuntimeException("Device doesn't exist with a given Id:" + deviceId));
+        return modelMapper.map(device, DeviceDto.class);
+    }
+
 }
