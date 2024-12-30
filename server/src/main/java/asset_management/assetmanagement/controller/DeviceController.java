@@ -66,4 +66,12 @@ public class DeviceController {
         return ResponseEntity.ok(archivedDevice);
     }
 
+
+    //DELETE - Delete Device REST API
+    @DeleteMapping("{id}")
+    public  ResponseEntity<String> deleteDevice(@PathVariable("id") Long deviceId){
+        deviceService.deleteDevice(deviceId);
+        return ResponseEntity.ok("Device Deleted Successfully");
+    }
+
 }

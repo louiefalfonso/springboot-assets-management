@@ -7,8 +7,10 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
 
-import java.time.LocalDate;
+
+import java.util.Date;
 import java.util.List;
 
 @Data
@@ -44,8 +46,10 @@ public class Asset {
     @Column(name = "rack_number")
     private String rackNumber;
 
+    @CreationTimestamp
+    @Column(name = "date_created")
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "MM-dd-yyyy")
-    private LocalDate createdDate;
+    private Date dateCreated;
 
     @OneToMany(mappedBy = "asset", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JsonIgnore
@@ -127,12 +131,12 @@ public class Asset {
         this.rackNumber = rackNumber;
     }
 
-    public LocalDate getCreatedDate() {
-        return createdDate;
+    public Date getDateCreated() {
+        return dateCreated;
     }
 
-    public void setCreatedDate(LocalDate createdDate) {
-        this.createdDate = createdDate;
+    public void setDateCreated(Date dateCreated) {
+        this.dateCreated = dateCreated;
     }
 
     public List<StatusHistory> getStatusHistory() {

@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
 
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 @Data
@@ -21,7 +22,7 @@ public class AssetDto {
     private String rackNumber;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "MM-dd-yyyy")
-    private LocalDate createdDate;
+    private Date dateCreated;
 
     private List<StatusHistoryDto> statusHistory;
     private List<StatusTrackingDto> statusTracking;
@@ -93,12 +94,12 @@ public class AssetDto {
         this.rackNumber = rackNumber;
     }
 
-    public LocalDate getCreatedDate() {
-        return createdDate;
+    public Date getDateCreated() {
+        return dateCreated;
     }
 
-    public void setCreatedDate(LocalDate createdDate) {
-        this.createdDate = createdDate;
+    public void setDateCreated(Date dateCreated) {
+        this.dateCreated = dateCreated;
     }
 
     public List<StatusHistoryDto> getStatusHistory() {

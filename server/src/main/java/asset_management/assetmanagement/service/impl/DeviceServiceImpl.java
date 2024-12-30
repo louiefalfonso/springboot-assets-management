@@ -45,6 +45,7 @@ public class DeviceServiceImpl implements DeviceService {
         return modelMapper.map(device, DeviceDto.class);
     }
 
+
     // REST API - Archiving a Device
     @Override
     public void archiveDevice(Long deviceId) {
@@ -70,5 +71,13 @@ public class DeviceServiceImpl implements DeviceService {
         return modelMapper.map(device, DeviceDto.class);
     }
 
+
+    // REST API - Delete Device
+    @Override
+    public void deleteDevice(Long deviceId) {
+        Device device = deviceRepository.findAllById(deviceId)
+                .orElseThrow(()-> new RuntimeException("Device doesn't exist with given id:" + deviceId));
+        deviceRepository.deleteById(deviceId);
+    }
 
 }

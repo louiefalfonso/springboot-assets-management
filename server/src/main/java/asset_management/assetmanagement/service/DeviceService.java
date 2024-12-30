@@ -13,6 +13,8 @@ public interface DeviceService {
 
     DeviceDto getDeviceById(Long deviceId);
 
+    void deleteDevice(Long deviceId);
+
     void archiveDevice(Long deviceId);
 
     List<DeviceDto> getAllArchivedDevices();
