@@ -47,25 +47,25 @@ public class DeviceController {
 
     //PUT - Archiving a Device REST API
     @PutMapping("/{id}/archive")
-    public ResponseEntity<Void> archiveDevice(@PathVariable("id") Long id){
+    public ResponseEntity<String> archiveDevice(@PathVariable("id") Long id){
         deviceService.archiveDevice(id);
-        return ResponseEntity.noContent().build();
+        return ResponseEntity.ok("Device Archived Successfully");
     }
 
-    //GET -Get All Archived Devices REST API
+    //GET - Get All Archived Devices REST API
     @GetMapping("/archived")
     public ResponseEntity<List<DeviceDto>> getAllArchivedDevices(){
         List<DeviceDto> archivedDevices = deviceService.getAllArchivedDevices();
         return ResponseEntity.ok(archivedDevices);
     }
 
-    //GET -Get Archived Device By ID REST API
+
+    //GET - Get Archived Device By ID REST API
     @GetMapping("/archived/{id}")
     public ResponseEntity<DeviceDto> getArchivedDeviceById(@PathVariable Long id) {
         DeviceDto archivedDevice = deviceService.getArchivedDeviceById(id);
         return ResponseEntity.ok(archivedDevice);
     }
-
 
     //DELETE - Delete Device REST API
     @DeleteMapping("{id}")
