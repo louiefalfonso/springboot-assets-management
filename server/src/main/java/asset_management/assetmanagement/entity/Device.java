@@ -37,6 +37,8 @@ public class Device {
     @JoinColumn(name = "asset_id")
     private Asset asset;
 
+    private boolean archived;
+
     //Getters & Setters
 
     public Long getId() {
@@ -71,4 +73,11 @@ public class Device {
         this.asset = asset;
     }
 
+    public boolean isArchived() {
+        return archived;
+    }
+
+    public void setArchived(boolean archived) {
+        this.archived = archived;
+    }
 }

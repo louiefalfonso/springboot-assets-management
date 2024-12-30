@@ -1,6 +1,5 @@
 package asset_management.assetmanagement.dto;
 
-import asset_management.assetmanagement.entity.StatusHistory;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
 

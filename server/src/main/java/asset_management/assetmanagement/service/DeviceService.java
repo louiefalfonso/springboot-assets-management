@@ -11,13 +11,12 @@ public interface DeviceService {
 
     List<DeviceDto> getAllDevices();
 
-    DeviceDto getDeviceById (Long deviceId);
+    DeviceDto getDeviceById(Long deviceId);
 
-    /*
+    void archiveDevice(Long deviceId);
 
+    List<DeviceDto> getAllArchivedDevices();
 
-    AssetDto updateAsset(Long assetId, AssetDto updateAsset);
+    DeviceDto getArchivedDeviceById(Long id);
 
-    void deleteAsset(Long assetId);
-     */
 }

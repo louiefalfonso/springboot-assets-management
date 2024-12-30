@@ -1,6 +1,5 @@
 package asset_management.assetmanagement.controller;
 
-import asset_management.assetmanagement.dto.AssetDto;
 import asset_management.assetmanagement.dto.DeviceDto;
 import asset_management.assetmanagement.entity.Device;
 import asset_management.assetmanagement.repository.DeviceRepository;
@@ -44,8 +43,27 @@ public class DeviceController {
         Device device = deviceRepository.findAllById(id)
                 .orElseThrow(()-> new RuntimeException("Device does not exist with Id:" + id));
         return ResponseEntity.ok(device);
+    }
 
+    //PUT - Archiving a Device REST API
+    @PutMapping("/{id}/archive")
+    public ResponseEntity<Void> archiveDevice(@PathVariable("id") Long id){
+        deviceService.archiveDevice(id);
+        return ResponseEntity.noContent().build();
+    }
 
+    //GET -Get All Archived Devices REST API
+    @GetMapping("/archived")
+    public ResponseEntity<List<DeviceDto>> getAllArchivedDevices(){
+        List<DeviceDto> archivedDevices = deviceService.getAllArchivedDevices();
+        return ResponseEntity.ok(archivedDevices);
+    }
+
+    //GET -Get Archived Device By ID REST API
+    @GetMapping("/archived/{id}")
+    public ResponseEntity<DeviceDto> getArchivedDeviceById(@PathVariable Long id) {
+        DeviceDto archivedDevice = deviceService.getArchivedDeviceById(id);
+        return ResponseEntity.ok(archivedDevice);
     }
 
 }
