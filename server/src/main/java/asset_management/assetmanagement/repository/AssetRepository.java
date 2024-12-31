@@ -11,4 +11,7 @@ public interface AssetRepository extends JpaRepository<Asset, Long> {
 
     Optional<Asset> findAllById (Long AssetId);
 
+    // for JUnit Test Case Only
+    Optional<Asset> findByAssetNumber (String assetNumber);
+
 }
