@@ -314,4 +314,38 @@ public class AssetServiceUnitTests {
         verify(modelMapper, never()).map(any(), eq (AssetDto.class));
     }
 
+    @Test
+    @Order(11)
+    @DisplayName("Test 11: Delete Asset Successfully")
+    public void deleteAsset_SuccessfulDeletion() {
+        // Arrange
+        Long assetId = 1L;
+        Asset asset = new Asset();
+        when(assetRepository.findAllById(assetId)).thenReturn(Optional.of(asset));
+
+        // Act
+        assetService.deleteAsset(assetId);
+
+        // Assert
+        verify(assetRepository, times(1)).deleteById(assetId);
+    }
+
+    @Test
+    @Order(12)
+    @DisplayName("Test 12: Delete Asset - Asset Not Found")
+    public void deleteAsset_AssetNotFound() {
+        // Arrange
+        Long assetId = 1L;
+        when(assetRepository.findAllById(assetId)).thenReturn(Optional.empty());
+
+        // Act & Assert
+        RuntimeException exception = assertThrows(RuntimeException.class, () -> {
+            assetService.deleteAsset(assetId);
+        });
+
+        // Assert
+        verify(assetRepository, never()).deleteById(assetId);
+        assert(exception.getMessage().contains("Asset doesn't exist with given id:" + assetId));
+    }
+
 }
