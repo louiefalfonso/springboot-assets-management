@@ -83,7 +83,6 @@
 
 
 
-
 	</dependencies>
 
 	<build>
@@ -112,8 +111,15 @@
 					</excludes>
 				</configuration>
 			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>3.1.2</version>
+				<configuration>
+					<argLine>-XX:+EnableDynamicAgentLoading -Djdk.instrument.traceUsage</argLine>
+				</configuration>
+			</plugin>
 		</plugins>
-
 	</build>
 
 </project>
