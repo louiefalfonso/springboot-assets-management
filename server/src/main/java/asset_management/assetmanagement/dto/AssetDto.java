@@ -1,15 +1,20 @@
 package asset_management.assetmanagement.dto;
 
+import asset_management.assetmanagement.entity.Asset;
 import com.fasterxml.jackson.annotation.JsonFormat;
-import lombok.*;
+import lombok.AllArgsConstructor;
 
-import java.time.LocalDate;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import java.util.Date;
 import java.util.List;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 public class AssetDto {
 
     private Long id;
@@ -124,5 +129,10 @@ public class AssetDto {
 
     public void setWarrantyStatus(List<WarrantyStatusDto> warrantyStatus) {
         this.warrantyStatus = warrantyStatus;
+    }
+
+
+    public Asset get() {
+        return null;
     }
 }

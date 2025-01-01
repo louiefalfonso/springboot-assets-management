@@ -131,8 +131,7 @@ public class AssetRepositoryUnitTests {
         String expectedToString = "Asset(id=1, assetNumber=C0000001, brand=Lenovo, model=Acer 314 14 Inch Chromebook (CB314-2H), type=Chromebook, serialNumber=MT8183C, location=CCG-IT-DEPT, rackNumber=MT8183C, dateCreated=null, statusHistory=null, statusTracking=null, warrantyStatus=null)";
 
         Assertions.assertThat(asset.toString()).isEqualTo(expectedToString);
-
-
+        
     }
 
     @Test

@@ -4,20 +4,20 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 
-
 import java.util.Date;
 import java.util.List;
 
 @Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Builder
 @Table(name = "assets")
 public class Asset {
 
@@ -162,4 +162,6 @@ public class Asset {
     public void setWarrantyStatus(List<WarrantyStatus> warrantyStatus) {
         this.warrantyStatus = warrantyStatus;
     }
+
+
 }
