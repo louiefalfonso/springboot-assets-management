@@ -6,16 +6,22 @@
       <option name="ignoredModules">
         <list>
           <option value="asset.management" />
+          <option value="asset.management" />
+          <option value="asset.management" />
         </list>
       </option>
       <option name="ignoredPackages">
         <list>
           <option value="org.springframework:spring-webmvc:6.2.0" />
+          <option value="ch.qos.logback:logback-core:1.5.12" />
+          <option value="org.apache.tomcat.embed:tomcat-embed-core:10.1.33" />
         </list>
       </option>
       <option name="ignoredReasons">
         <list>
           <option value="Other" />
+          <option value="Not exploitable" />
+          <option value="Not exploitable" />
         </list>
       </option>
     </inspection_tool>
