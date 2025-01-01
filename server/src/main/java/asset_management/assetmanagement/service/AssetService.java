@@ -10,7 +10,7 @@ public interface AssetService {
 
     List<AssetDto> getAllAssets();
 
-    AssetDto getAssetById (Long assetId);
+    AssetDto getAssetById(Long assetId);
 
     AssetDto updateAsset(Long assetId, AssetDto updateAsset);
 

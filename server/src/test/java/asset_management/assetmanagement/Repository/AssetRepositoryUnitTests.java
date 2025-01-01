@@ -22,7 +22,7 @@ public class AssetRepositoryUnitTests {
 
     @Test
     @Order(1)
-    @DisplayName("Test 1: Create New Asset Test")
+    @DisplayName("Test 1: Create New Asset")
     public void createNewAssetTest() {
         // Create a new asset object
         Asset asset = Asset.builder()
@@ -51,7 +51,7 @@ public class AssetRepositoryUnitTests {
 
     @Test
     @Order(2)
-    @DisplayName("Test 2: Save Asset Test")
+    @DisplayName("Test 2: Save Asset")
     public void saveAssetTest(){
         Asset asset = Asset.builder()
                 .assetNumber("C0000001")
@@ -69,7 +69,7 @@ public class AssetRepositoryUnitTests {
 
     @Test
     @Order(3)
-    @DisplayName("Test 3: Get Asset By ID Test")
+    @DisplayName("Test 3: Get Asset By ID")
     public void getAssetTest(){
         // Create an asset with ID 1L if it doesn't exist
         Asset asset = assetRepository.findAllById(1L).orElseGet(()-> {
@@ -84,7 +84,7 @@ public class AssetRepositoryUnitTests {
 
     @Test
     @Order(4)
-    @DisplayName("Test 4: Get All Assets Test")
+    @DisplayName("Test 4: Get All Assets")
     public void getListOfAssets(){
         List<Asset> assets = assetRepository.findAll();
         Assertions.assertThat(assets.size()).isGreaterThan(0);

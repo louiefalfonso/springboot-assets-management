@@ -42,7 +42,7 @@ public class AssetServiceImpl implements AssetService {
 
     // REST API - Get Asset By ID
     @Override
-    public AssetDto getAssetById (Long assetId) {
+    public AssetDto getAssetById(Long assetId) {
        Asset asset = assetRepository.findAllById(assetId)
                .orElseThrow(()->new RuntimeException("Asset doesn't exist with a given Id:" + assetId));
        return modelMapper.map(asset, AssetDto.class);
