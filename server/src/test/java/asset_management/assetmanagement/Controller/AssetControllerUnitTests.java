@@ -69,6 +69,8 @@ public class AssetControllerUnitTests {
         // Assert
         assertEquals(HttpStatus.CREATED, response.getStatusCode());
         assertEquals(savedAssetDto, response.getBody());
+
+        // Verify
         verify(assetService, times(1)).createNewAsset(inputAssetDto);
     }
 
@@ -86,6 +88,8 @@ public class AssetControllerUnitTests {
         // Assert
         assertEquals(HttpStatus.CREATED, response.getStatusCode());
         assertEquals(null, response.getBody());
+
+        // Verify
         verify(assetService, times(1)).createNewAsset(null);
     }
 
@@ -105,6 +109,8 @@ public class AssetControllerUnitTests {
         });
 
         assertEquals("Service Error", exception.getMessage());
+
+        // Verify
         verify(assetService, times(1)).createNewAsset(inputAssetDto);
     }
 
@@ -220,6 +226,7 @@ public class AssetControllerUnitTests {
         assertEquals("LocationB", response.getBody().getLocation());
         assertEquals("Rack2", response.getBody().getRackNumber());
 
+        // Verify
         verify(assetRepository, times(1)).findById(assetId);
         verify(assetRepository, times(1)).save(existingAsset);
     }
@@ -239,8 +246,10 @@ public class AssetControllerUnitTests {
             assetController.updateAsset(assetId, updatedAssetDetails);
         });
 
+        // Assert
         assertEquals("Asset does not exist with id: " + assetId, exception.getMessage());
 
+        // Verify
         verify(assetRepository, times(1)).findById(assetId);
         verify(assetRepository, never()).save(any());
     }
