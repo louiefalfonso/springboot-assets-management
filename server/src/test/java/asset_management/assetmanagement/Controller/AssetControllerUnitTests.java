@@ -158,4 +158,132 @@ public class AssetControllerUnitTests {
         assertNotNull(response.getBody()); // Verify response body is not null
         assertEquals(mockAsset, response.getBody()); // Verify the response body matches the mock asset
     }
+
+    @Test
+    @Order(6)
+    @DisplayName("Test 6: Get Asset By Id - When Asset Does Not Exist")
+    public void getAssetById_WhenAssetDoesNotExist() {
+        // Arrange
+        Long assetId = 999L; // Non-existent asset ID
+
+        // Mock the behavior of assetRepository.findAllById() to return an empty Optional
+        when(assetRepository.findAllById(assetId)).thenReturn(Optional.empty());
+
+        // Act and Assert
+        RuntimeException exception = assertThrows(RuntimeException.class, () -> {
+            assetController.getAssetById(assetId);
+        });
+
+        // Verify the exception message
+        assertEquals("Asset does not exist with Id:999", exception.getMessage());
+    }
+
+    @Test
+    @Order(7)
+    @DisplayName("Test 7: Update Assets Success")
+    void updateAsset_Success() {
+        // Arrange
+        long assetId = 1L;
+        Asset existingAsset = new Asset();
+        existingAsset.setId(assetId);
+        existingAsset.setAssetNumber("A123");
+        existingAsset.setBrand("BrandA");
+        existingAsset.setModel("ModelX");
+        existingAsset.setType("Type1");
+        existingAsset.setSerialNumber("SN123");
+        existingAsset.setLocation("LocationA");
+        existingAsset.setRackNumber("Rack1");
+
+        Asset updatedAssetDetails = new Asset();
+        updatedAssetDetails.setAssetNumber("A456");
+        updatedAssetDetails.setBrand("BrandB");
+        updatedAssetDetails.setModel("ModelY");
+        updatedAssetDetails.setType("Type2");
+        updatedAssetDetails.setSerialNumber("SN456");
+        updatedAssetDetails.setLocation("LocationB");
+        updatedAssetDetails.setRackNumber("Rack2");
+
+        when(assetRepository.findById(assetId)).thenReturn(Optional.of(existingAsset));
+        when(assetRepository.save(existingAsset)).thenReturn(existingAsset);
+
+        // Act
+        ResponseEntity<Asset> response = assetController.updateAsset(assetId, updatedAssetDetails);
+
+        // Assert
+        assertEquals(HttpStatus.OK, response.getStatusCode());
+        assertNotNull(response.getBody());
+        assertEquals("A456", response.getBody().getAssetNumber());
+        assertEquals("BrandB", response.getBody().getBrand());
+        assertEquals("ModelY", response.getBody().getModel());
+        assertEquals("Type2", response.getBody().getType());
+        assertEquals("SN456", response.getBody().getSerialNumber());
+        assertEquals("LocationB", response.getBody().getLocation());
+        assertEquals("Rack2", response.getBody().getRackNumber());
+
+        verify(assetRepository, times(1)).findById(assetId);
+        verify(assetRepository, times(1)).save(existingAsset);
+    }
+
+    @Test
+    @Order(8)
+    @DisplayName("Test 8: Update Asset - Asset Not Found")
+    void updateAsset_AssetNotFound() {
+        // Arrange
+        long assetId = 1L;
+        Asset updatedAssetDetails = new Asset();
+
+        when(assetRepository.findById(assetId)).thenReturn(Optional.empty());
+
+        // Act & Assert
+        RuntimeException exception = assertThrows(RuntimeException.class, () -> {
+            assetController.updateAsset(assetId, updatedAssetDetails);
+        });
+
+        assertEquals("Asset does not exist with id: " + assetId, exception.getMessage());
+
+        verify(assetRepository, times(1)).findById(assetId);
+        verify(assetRepository, never()).save(any());
+    }
+
+    @Test
+    @Order(9)
+    @DisplayName("Test 9: Delete Asset Success")
+    void deleteAsset_Success() {
+        // Arrange
+        Long assetId = 1L;
+
+        // Mock the service method to do nothing (since it's a void method)
+        doNothing().when(assetService).deleteAsset(assetId);
+
+        // Act
+        ResponseEntity<String> response = assetController.deleteAsset(assetId);
+
+        // Assert
+        assertEquals(HttpStatus.OK, response.getStatusCode());
+        assertEquals("Asset Deleted Successfully", response.getBody());
+
+        // Verify that the service method was called once
+        verify(assetService, times(1)).deleteAsset(assetId);
+    }
+
+    @Test
+    @Order(10)
+    @DisplayName("Test 10: Delete Asset - Exception Thrown")
+    void deleteAsset_ExceptionThrown() {
+        // Arrange
+        Long assetId = 1L;
+
+        // Mock the service method to throw an exception
+        doThrow(new RuntimeException("Asset not found")).when(assetService).deleteAsset(assetId);
+
+        // Act & Assert
+        RuntimeException exception = assertThrows(RuntimeException.class, () -> {
+            assetController.deleteAsset(assetId);
+        });
+
+        assertEquals("Asset not found", exception.getMessage());
+
+        // Verify that the service method was called once
+        verify(assetService, times(1)).deleteAsset(assetId);
+    }
 }
