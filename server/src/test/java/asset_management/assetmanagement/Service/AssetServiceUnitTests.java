@@ -67,9 +67,7 @@ public class AssetServiceUnitTests {
         when(assetRepository.existsByAssetNumber("C0000001")).thenReturn(true);
 
         // Act & Assert
-        RuntimeException exception = assertThrows(RuntimeException.class, () -> {
-            assetService.createNewAsset(assetDto);
-        });
+        RuntimeException exception = assertThrows(RuntimeException.class, () -> assetService.createNewAsset(assetDto));
 
         assertEquals("Asset number already exists", exception.getMessage());
         verify(assetRepository, times(1)).existsByAssetNumber("C0000001");
@@ -81,9 +79,7 @@ public class AssetServiceUnitTests {
     @DisplayName("Test 3: Create New Asset with Null Input")
     public void createNewAsset_NullInput() {
         // Act & Assert
-        assertThrows(NullPointerException.class, () -> {
-            assetService.createNewAsset(null);
-        });
+        assertThrows(NullPointerException.class, () -> assetService.createNewAsset(null));
 
         verify(assetRepository, never()).existsByAssetNumber(anyString());
         verify(assetRepository, never()).save(any(Asset.class));
@@ -215,9 +211,7 @@ public class AssetServiceUnitTests {
         when(assetRepository.findAllById(assetId)).thenReturn(Optional.empty());
 
         // Act & Assert
-        RuntimeException exception = assertThrows(RuntimeException.class, () -> {
-            assetService.getAssetById(assetId);
-        });
+        RuntimeException exception = assertThrows(RuntimeException.class, () -> assetService.getAssetById(assetId));
 
         assertEquals("Asset doesn't exist with a given Id:1", exception.getMessage());
 
@@ -303,9 +297,7 @@ public class AssetServiceUnitTests {
         when(assetRepository.findAllById(assetId)).thenReturn(Optional.empty());
 
         // Act & Assert
-        RuntimeException exception = assertThrows(RuntimeException.class, () -> {
-            assetService.updateAsset(assetId, updateAssetDto);
-        });
+        RuntimeException exception = assertThrows(RuntimeException.class, () -> assetService.updateAsset(assetId, updateAssetDto));
 
         assertEquals("Asset doesn't exist with a given Id:1", exception.getMessage());
 
@@ -339,9 +331,7 @@ public class AssetServiceUnitTests {
         when(assetRepository.findAllById(assetId)).thenReturn(Optional.empty());
 
         // Act & Assert
-        RuntimeException exception = assertThrows(RuntimeException.class, () -> {
-            assetService.deleteAsset(assetId);
-        });
+        RuntimeException exception = assertThrows(RuntimeException.class, () -> assetService.deleteAsset(assetId));
 
         // Assert
         verify(assetRepository, never()).deleteById(assetId);

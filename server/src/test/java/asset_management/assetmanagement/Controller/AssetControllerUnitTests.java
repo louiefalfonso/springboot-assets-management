@@ -87,7 +87,7 @@ public class AssetControllerUnitTests {
 
         // Assert
         assertEquals(HttpStatus.CREATED, response.getStatusCode());
-        assertEquals(null, response.getBody());
+        assertNull(response.getBody());
 
         // Verify
         verify(assetService, times(1)).createNewAsset(null);
@@ -104,9 +104,7 @@ public class AssetControllerUnitTests {
         when(assetService.createNewAsset(inputAssetDto)).thenThrow(new RuntimeException("Service Error"));
 
         // Act & Assert
-        Exception exception = assertThrows(RuntimeException.class, () -> {
-            assetController.createAsset(inputAssetDto);
-        });
+        Exception exception = assertThrows(RuntimeException.class, () -> assetController.createAsset(inputAssetDto));
 
         assertEquals("Service Error", exception.getMessage());
 
@@ -176,9 +174,7 @@ public class AssetControllerUnitTests {
         when(assetRepository.findAllById(assetId)).thenReturn(Optional.empty());
 
         // Act and Assert
-        RuntimeException exception = assertThrows(RuntimeException.class, () -> {
-            assetController.getAssetById(assetId);
-        });
+        RuntimeException exception = assertThrows(RuntimeException.class, () -> assetController.getAssetById(assetId));
 
         // Verify the exception message
         assertEquals("Asset does not exist with Id:999", exception.getMessage());
@@ -242,9 +238,7 @@ public class AssetControllerUnitTests {
         when(assetRepository.findById(assetId)).thenReturn(Optional.empty());
 
         // Act & Assert
-        RuntimeException exception = assertThrows(RuntimeException.class, () -> {
-            assetController.updateAsset(assetId, updatedAssetDetails);
-        });
+        RuntimeException exception = assertThrows(RuntimeException.class, () -> assetController.updateAsset(assetId, updatedAssetDetails));
 
         // Assert
         assertEquals("Asset does not exist with id: " + assetId, exception.getMessage());
@@ -286,9 +280,7 @@ public class AssetControllerUnitTests {
         doThrow(new RuntimeException("Asset not found")).when(assetService).deleteAsset(assetId);
 
         // Act & Assert
-        RuntimeException exception = assertThrows(RuntimeException.class, () -> {
-            assetController.deleteAsset(assetId);
-        });
+        RuntimeException exception = assertThrows(RuntimeException.class, () -> assetController.deleteAsset(assetId));
 
         assertEquals("Asset not found", exception.getMessage());
 
