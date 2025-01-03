@@ -6,6 +6,9 @@
       <item index="1" class="java.lang.String" itemvalue="org.springframework.web.bind.annotation.GetMapping" />
       <item index="2" class="java.lang.String" itemvalue="org.springframework.web.bind.annotation.PostMapping" />
     </list>
+    <writeAnnotations>
+      <writeAnnotation name="org.springframework.beans.factory.annotation.Autowired" />
+    </writeAnnotations>
   </component>
   <component name="ExternalStorageConfigurationManager" enabled="true" />
   <component name="MavenProjectsManager">
