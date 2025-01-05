@@ -64,7 +64,6 @@ public class Asset {
     private List<WarrantyStatus> warrantyStatus;
 
 
-
     //Getters & Setters
 
     public Long getId() {

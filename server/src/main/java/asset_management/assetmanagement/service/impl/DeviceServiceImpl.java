@@ -72,12 +72,32 @@ public class DeviceServiceImpl implements DeviceService {
     }
 
 
+
     // REST API - Delete Device
     @Override
     public void deleteDevice(Long deviceId) {
-        Device device = deviceRepository.findAllById(deviceId)
-                .orElseThrow(()-> new RuntimeException("Device doesn't exist with given id:" + deviceId));
-        deviceRepository.deleteById(deviceId);
+        Device device = deviceRepository.findById(deviceId)
+                .orElseThrow(() -> new RuntimeException("Device doesn't exist with given id:" + deviceId));
+        device.setDeleted(true);
+        deviceRepository.save(device);
     }
+
+    // REST API - Get All Deleted Devices
+    @Override
+    public List<DeviceDto> getAllDeletedDevices() {
+        List<Device> deletedDevices = deviceRepository.findByDeleted(true);
+        return deletedDevices.stream()
+                .map(device -> modelMapper.map(device, DeviceDto.class))
+                .collect(Collectors.toList());
+    }
+
+    // REST API - Get Deleted Device By ID
+    @Override
+    public DeviceDto getDeletedDeviceById(Long id) {
+        Device device = deviceRepository.findByIdAndDeleted(id, true)
+                .orElseThrow(() -> new RuntimeException("Deleted Device doesn't exist with a given Id:" + id));
+        return modelMapper.map(device, DeviceDto.class);
+    }
+
 
 }

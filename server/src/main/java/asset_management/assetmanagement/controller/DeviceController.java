@@ -59,7 +59,6 @@ public class DeviceController {
         return ResponseEntity.ok(archivedDevices);
     }
 
-
     //GET - Get Archived Device By ID REST API
     @GetMapping("/archived/{id}")
     public ResponseEntity<DeviceDto> getArchivedDeviceById(@PathVariable Long id) {
@@ -72,6 +71,20 @@ public class DeviceController {
     public  ResponseEntity<String> deleteDevice(@PathVariable("id") Long deviceId){
         deviceService.deleteDevice(deviceId);
         return ResponseEntity.ok("Device Deleted Successfully");
+    }
+
+    //GET - Get All Deleted Devices REST API
+    @GetMapping("/deleted")
+    public ResponseEntity<List<DeviceDto>> getAllDeletedDevices() {
+        List<DeviceDto> deletedDevices = deviceService.getAllDeletedDevices();
+        return ResponseEntity.ok(deletedDevices);
+    }
+
+    //GET - Get Deleted Device By ID REST API
+    @GetMapping("/deleted/{id}")
+    public ResponseEntity<DeviceDto> getDeletedDeviceById(@PathVariable Long id) {
+        DeviceDto deletedDevice = deviceService.getDeletedDeviceById(id);
+        return ResponseEntity.ok(deletedDevice);
     }
 
 }

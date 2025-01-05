@@ -21,4 +21,8 @@ public interface DeviceService {
 
     DeviceDto getArchivedDeviceById(Long id);
 
+    List<DeviceDto> getAllDeletedDevices();
+
+    DeviceDto getDeletedDeviceById(Long id);
+
 }

@@ -39,6 +39,8 @@ public class Device {
 
     private boolean archived;
 
+    private boolean deleted = false;
+
     //Getters & Setters
 
     public Long getId() {
@@ -79,5 +81,13 @@ public class Device {
 
     public void setArchived(boolean archived) {
         this.archived = archived;
+    }
+
+    public boolean isDeleted() {
+        return deleted;
+    }
+
+    public void setDeleted(boolean deleted) {
+        this.deleted = deleted;
     }
 }

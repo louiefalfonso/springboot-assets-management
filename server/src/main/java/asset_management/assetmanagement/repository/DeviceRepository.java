@@ -13,4 +13,8 @@ public interface DeviceRepository extends JpaRepository<Device, Long> {
     List<Device> findByArchived(boolean archived);
 
     Optional<Device> findByIdAndArchived(Long id, boolean archived);
+
+    List<Device> findByDeleted(boolean deleted);
+
+    Optional<Device> findByIdAndDeleted(Long id, boolean deleted);
 }
