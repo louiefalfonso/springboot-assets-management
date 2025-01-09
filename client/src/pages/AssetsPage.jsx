@@ -1,9 +1,9 @@
 import React from 'react'
 
-const Assets = () => {
+const AssetsPage = () => {
   return (
     <div>Assets</div>
   )
 }
 
-export default Assets
+export default AssetsPage
