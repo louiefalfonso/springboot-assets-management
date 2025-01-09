@@ -24,12 +24,12 @@ const Sidebar = ({ isSidebarSize }) => {
               <Link to="index" className="w-full h-44 main-logo">
                 <img
                   src={logo}
-                  className="mx-auto dark-logo logo  h-44  dark:hidden"
+                  className="mx-auto dark-logo logo  h-16  dark:hidden"
                   alt="logo"
                 />
                 <img
                   src={logo}
-                  className="hidden mx-auto light-logo h-44 logo dark:block"
+                  className="hidden mx-auto light-logo h-16 logo dark:block"
                   alt="logo"
                 />
               </Link>
