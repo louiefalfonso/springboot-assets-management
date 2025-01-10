@@ -34,7 +34,7 @@ const Assets = () => {
               <h2 className="font-bold">Assets List</h2>
               <button
                 type="button"
-                //onClick={toggleModal}
+                onClick={toggleModal}
                 className="btn py-1 px-3.5 text-xs bg-warning border border-warning rounded-md text-black transition-all duration-300 hover:bg-warning/[0.85] hover:border-warning/[0.85]"
               >
                 + Add Assets
@@ -63,9 +63,9 @@ const Assets = () => {
                       <td>
                         <button
                           type="button"
-                          className="btn py-1 px-3.5 text-xs bg-warning border border-warning rounded-md text-black transition-all duration-300 hover:bg-warning/[0.85] hover:border-warning/[0.85]"
+                          className="btn py-1 px-3.5 text-xs bg-purple border border-purple rounded-md text-white transition-all duration-300 hover:bg-purple/[0.85] hover:border-purple/[0.85]"
                         >
-                          Edit
+                          View
                         </button>
                       </td>
                     </tr>
