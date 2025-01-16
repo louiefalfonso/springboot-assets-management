@@ -1,5 +1,8 @@
 import React, { useState, useEffect, useMemo } from "react";
+import { createPortal } from "react-dom";
+import Modal from "../layout/Modal";
 import AssetService from "../../services/AssetsService";
+import AddNewAssets from "./AddNewAssets";
 
 const Assets = () => {
   const [assets, setAssets] = useState([]);
@@ -76,6 +79,19 @@ const Assets = () => {
           </div>
         </div>
       </div>
+      {isModalOpen &&
+        createPortal(
+          <Modal
+            isOpen={isModalOpen}
+            toggleModal={toggleModal}
+            title="Create New Asset"
+            divClass="flex items-start justify-center min-h-screen px-4"
+            content={<AddNewAssets toggleModal={toggleModal} />}
+            sizeClass="relative w-full max-w-lg p-0 my-8 overflow-hidden bg-white border rounded-lg border-black/10 dark:bg-darklight dark:border-darkborder"
+            spaceClass="p-5 space-y-4"
+          />,
+          document.body
+        )}
     </>
   );
 }

@@ -76,6 +76,116 @@ const AddNewAssets = () => {
                 onChange={(e) => setAssetNumber(e.target.value)}
               />
             </div>
+            <div className="sm:col-span-1">
+              <label
+                htmlFor="Brand"
+                className="block text-sm font-medium text-gray-900"
+              >
+                Brand:
+              </label>
+              <input
+                placeholder="Brand"
+                required
+                type="text"
+                className="form-input"
+                id="brand"
+                value={brand}
+                onChange={(e) => setBrand(e.target.value)}
+              />
+            </div>
+            <div className="sm:col-span-1">
+              <label
+                htmlFor="Model"
+                className="block text-sm font-medium text-gray-900"
+              >
+                Model:
+              </label>
+              <input
+                placeholder="Brand"
+                required
+                type="text"
+                className="form-input"
+                id="model"
+                value={model}
+                onChange={(e) => setModel(e.target.value)}
+              />
+            </div>
+            <div className="sm:col-span-1">
+              <label
+                htmlFor="Type"
+                className="block text-sm font-medium text-gray-900"
+              >
+                Type:
+              </label>
+              <input
+                placeholder="Type"
+                required
+                type="text"
+                className="form-input"
+                id="type"
+                value={type}
+                onChange={(e) => setType(e.target.value)}
+              />
+            </div>
+            <div className="sm:col-span-1">
+              <label
+                htmlFor="Serial Number"
+                className="block text-sm font-medium text-gray-900"
+              >
+                Serial Number:
+              </label>
+              <input
+                placeholder="Serial Number"
+                required
+                type="text"
+                className="form-input"
+                id="serialNumber"
+                value={serialNumber}
+                onChange={(e) => setSerialNumber(e.target.value)}
+              />
+            </div>
+            <div className="sm:col-span-1">
+              <label
+                htmlFor="Location"
+                className="block text-sm font-medium text-gray-900"
+              >
+                Location:
+              </label>
+              <input
+                placeholder="Location"
+                required
+                type="text"
+                className="form-input"
+                id="location"
+                value={location}
+                onChange={(e) => setLocation(e.target.value)}
+              />
+            </div>
+            <div className="sm:col-span-1">
+              <label
+                htmlFor="Rack Number"
+                className="block text-sm font-medium text-gray-900"
+              >
+                Rack Number:
+              </label>
+              <input
+                placeholder="Rack Number"
+                required
+                type="text"
+                className="form-input"
+                id="rackNumber"
+                value={rackNumber}
+                onChange={(e) => setRackNumber(e.target.value)}
+              />
+            </div>
+            <div className="sm:col-span-1">
+              <button
+                type="submit"
+                className="btn w-full py-2 px-4 text-lg bg-warning border border-warning rounded-md text-black transition-all duration-300 hover:bg-warning/[0.85] hover:border-warning/[0.85]"
+              >
+                Create New Asset
+              </button>
+            </div>
           </form>
         </div>
       </div>
