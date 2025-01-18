@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useMemo } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
-import moment from "moment";
 import AssetService from "../../services/AssetsService";
 
 const AddNewAssets = () => {
+  
   const navigate = useNavigate();
   const params = useParams();
   const { id } = params;
@@ -37,9 +37,11 @@ const AddNewAssets = () => {
     };
   }, [assetNumber, brand, model, type, serialNumber, location, rackNumber]);
 
+  // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    // Add new asset
     AssetService.addNewAsset(addNewAsset)
       .then(() => {
         navigate("/assets");
@@ -59,7 +61,7 @@ const AddNewAssets = () => {
             onClick={(e) => e.stopPropagation()}
             className="grid grid-cols-1 sm:grid-cols-2 gap-4"
           >
-            <div className="sm:col-span-1">
+            <div className="sm:col-span-2">
               <label
                 htmlFor="assetNumber"
                 className="block text-sm font-medium text-gray-900"
@@ -76,7 +78,7 @@ const AddNewAssets = () => {
                 onChange={(e) => setAssetNumber(e.target.value)}
               />
             </div>
-            <div className="sm:col-span-1">
+            <div className="sm:col-span-2">
               <label
                 htmlFor="Brand"
                 className="block text-sm font-medium text-gray-900"
@@ -93,7 +95,7 @@ const AddNewAssets = () => {
                 onChange={(e) => setBrand(e.target.value)}
               />
             </div>
-            <div className="sm:col-span-1">
+            <div className="sm:col-span-2">
               <label
                 htmlFor="Model"
                 className="block text-sm font-medium text-gray-900"
@@ -178,7 +180,7 @@ const AddNewAssets = () => {
                 onChange={(e) => setRackNumber(e.target.value)}
               />
             </div>
-            <div className="sm:col-span-1">
+            <div className="sm:col-span-2">
               <button
                 type="submit"
                 className="btn w-full py-2 px-4 text-lg bg-warning border border-warning rounded-md text-black transition-all duration-300 hover:bg-warning/[0.85] hover:border-warning/[0.85]"

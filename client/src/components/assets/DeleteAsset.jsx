@@ -22,6 +22,7 @@ const DeleteAsset = () => {
   // Memoize the asset data to avoid unnecessary recalculations
   const memoizedAssets = useMemo(() => assets, [assets]);
 
+  // Handle asset deletion
   const deleteAsset = async (id) => {
     try {
       await AssetService.deleteAsset(id);

@@ -5,6 +5,7 @@ import AssetService from "../../services/AssetsService";
 import AddNewAssets from "./AddNewAssets";
 
 const Assets = () => {
+  
   const [assets, setAssets] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
