@@ -9,6 +9,7 @@ const AddNewAssets = () => {
   const params = useParams();
   const { id } = params;
 
+  // State to store new asset data
   const [assetNumber, setAssetNumber] = useState("");
   const [brand, setBrand] = useState("");
   const [model, setModel] = useState("");

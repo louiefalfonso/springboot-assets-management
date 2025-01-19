@@ -9,6 +9,7 @@ const UpdateAsset = () => {
   const params = useParams();
   const { id } = params;
 
+  // State to store updated asset data
   const [assetNumber, setAssetNumber] = useState("");
   const [brand, setBrand] = useState("");
   const [model, setModel] = useState("");
@@ -17,8 +18,9 @@ const UpdateAsset = () => {
   const [location, setLocation] = useState("");
   const [rackNumber, setRackNumber] = useState("");
 
-   const [error, setError] = useState(null);
-   const [isModalOpen, setIsModalOpen] = useState(false);
+  // State to control modals
+  const [error, setError] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
    const toggleModal = () => {
      setIsModalOpen(!isModalOpen);
