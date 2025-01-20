@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useMemo } from "react";
 import { createPortal } from "react-dom";
+import { Link } from "react-router-dom";
 import Modal from "../layout/Modal";
 import AssetService from "../../services/AssetsService";
 import AddNewAssets from "./AddNewAssets";
@@ -65,12 +66,12 @@ const Assets = () => {
                       <td>{asset.model}</td>
                       <td>{asset.type}</td>
                       <td>
-                        <button
-                          type="button"
-                          className="btn py-1 px-3.5 text-xs bg-purple border border-purple rounded-md text-white transition-all duration-300 hover:bg-purple/[0.85] hover:border-purple/[0.85]"
+                        <Link
+                          to={`/assets/${asset.id}`}
+                          className="btn py-1 px-3.5 text-xs bg-info border border-info rounded-md text-black transition-all duration-300 hover:bg-info/[0.85] hover:border-info/[0.85]"
                         >
                           View
-                        </button>
+                        </Link>
                       </td>
                     </tr>
                   ))}
