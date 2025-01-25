@@ -63,7 +63,9 @@ const Assets = () => {
                       <td>{asset.assetNumber}</td>
                       <td>{asset.brand}</td>
                       <td>{asset.serialNumber}</td>
-                      <td>{asset.model}</td>
+                      <td className="break-words whitespace-normal">
+                        {asset.model}
+                      </td>
                       <td>{asset.type}</td>
                       <td>
                         <Link

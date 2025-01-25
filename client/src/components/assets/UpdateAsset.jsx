@@ -206,7 +206,7 @@ const UpdateAsset = () => {
           </form>
         </div>
       </div>
-      <Toaster duration={12000} />
+      <Toaster duration={6000} />
     </>
   );
 }

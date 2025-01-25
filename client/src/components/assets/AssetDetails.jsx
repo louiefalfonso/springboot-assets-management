@@ -9,9 +9,9 @@ import DeleteAsset from "./DeleteAsset";
 
 const AssetDetails = () => {
 
-  const { id } = params;
   const navigate = useNavigate();
   const params = useParams();
+  const { id } = params;
 
   // State to store current asset data
   const [currentAsset, setCurrentAsset] = useState({});
@@ -49,8 +49,6 @@ const AssetDetails = () => {
   // Memoize the current asset data to avoid unnecessary recalculations
   const memoizedCurrentAsset = useMemo(() => currentAsset, [currentAsset]);
 
-
-
   return (
     <>
       <div className="flex flex-col gap-4 min-h-[calc(100vh-212px)]">
@@ -66,7 +64,7 @@ const AssetDetails = () => {
             </button>
           </div>
         </div>
-        <div className="grid grid-cols-1 gap-4 ">
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
           <div className="p-5 bg-white border rounded border-black/10 dark:bg-darklight dark:border-darkborder">
             {Object.keys(currentAsset).length > 0 ? (
               <div className="space-y-4">
@@ -74,10 +72,39 @@ const AssetDetails = () => {
                   <table className="w-full mt-4">
                     <tbody>
                       <tr className="ltr:text-left rtl:text-right">
-                        <td className="font-bold">First Name:</td>
+                        <td className="font-bold">Asset Number:</td>
                         <td>{currentAsset.assetNumber}</td>
                       </tr>
-                      
+                      <tr className="ltr:text-left rtl:text-right">
+                        <td className="font-bold">Model:</td>
+                        <td className="break-words whitespace-normal">
+                          {currentAsset.model}
+                        </td>
+                      </tr>
+                      <tr className="ltr:text-left rtl:text-right">
+                        <td className="font-bold">Brand:</td>
+                        <td>{currentAsset.brand}</td>
+                      </tr>
+                      <tr className="ltr:text-left rtl:text-right">
+                        <td className="font-bold">Rack Number:</td>
+                        <td>{currentAsset.rackNumber}</td>
+                      </tr>
+                      <tr className="ltr:text-left rtl:text-right">
+                        <td className="font-bold">Location:</td>
+                        <td>{currentAsset.location}</td>
+                      </tr>
+                      <tr className="ltr:text-left rtl:text-right">
+                        <td className="font-bold">Type:</td>
+                        <td>{currentAsset.type}</td>
+                      </tr>
+                      <tr className="ltr:text-left rtl:text-right">
+                        <td className="font-bold">Serial Number:</td>
+                        <td>{currentAsset.serialNumber}</td>
+                      </tr>
+                      <tr className="ltr:text-left rtl:text-right">
+                        <td className="font-bold">Date Created:</td>
+                        <td>{currentAsset.dateCreated}</td>
+                      </tr>
 
                       <tr className="ltr:text-left rtl:text-right">
                         <td>
@@ -107,8 +134,36 @@ const AssetDetails = () => {
               </div>
             )}
           </div>
+
+          <div className="p-5 bg-white border rounded border-black/10 dark:bg-darklight dark:border-darkborder"></div>
         </div>
       </div>
+      {isUpdateModalOpen &&
+        createPortal(
+          <Modal
+            isOpen={isUpdateModalOpen}
+            toggleModal={toggleUpdateModal}
+            title="Update Asset Details"
+            divClass="flex items-start justify-center min-h-screen px-4"
+            content={<UpdateAsset toggleModal={toggleUpdateModal} />}
+            sizeClass="relative w-full max-w-lg p-0 my-8 overflow-hidden bg-white border rounded-lg border-black/10 dark:bg-darklight dark:border-darkborder"
+            spaceClass="p-5 space-y-4"
+          />,
+          document.body
+        )}
+      {isDeleteModalOpen &&
+        createPortal(
+          <Modal
+            isOpen={isDeleteModalOpen}
+            toggleModal={toggleDeleteModal}
+            title="Delete Asset"
+            divClass="flex items-center justify-center min-h-screen px-4"
+            content={<DeleteAsset toggleModal={toggleDeleteModal} />}
+            sizeClass="relative w-full max-w-lg p-0 my-8 overflow-hidden bg-white border rounded-lg border-black/10 dark:bg-darklight dark:border-darkborder"
+            spaceClass="p-5 space-y-4"
+          />,
+          document.body
+        )}
     </>
   );
 }

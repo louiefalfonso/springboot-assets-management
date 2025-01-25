@@ -4,8 +4,9 @@ import MainLayout from '../../../components/layout/MainLayout';
 import AssetDetails from '../../../components/assets/AssetDetails';
 
 const AssetPage = () => {
-    
-    const { id } = useParams();
+
+  // Get the asset ID from the URL
+  const { id } = useParams();
 
   return (
     <>
