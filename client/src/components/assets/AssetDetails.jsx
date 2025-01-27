@@ -135,7 +135,9 @@ const AssetDetails = () => {
             )}
           </div>
 
-          <div className="p-5 bg-white border rounded border-black/10 dark:bg-darklight dark:border-darkborder"></div>
+          <div className="p-5 bg-white border rounded border-black/10 dark:bg-darklight dark:border-darkborder">
+          
+          </div>
         </div>
       </div>
       {isUpdateModalOpen &&

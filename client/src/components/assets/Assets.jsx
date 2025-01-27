@@ -78,6 +78,7 @@ const Assets = () => {
                     </tr>
                   ))}
                 </tbody>
+                
               </table>
             </div>
           </div>

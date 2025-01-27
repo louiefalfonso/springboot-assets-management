@@ -42,15 +42,19 @@ const AddNewAssets = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Add new asset
-    AssetService.addNewAsset(addNewAsset)
-      .then(() => {
-        navigate("/assets");
-        toast.success("Asset added successfully!");
-      })
-      .catch((error) => {
-        setError(error.response.data.message);
-      });
+    // Add New Asset
+    try {
+      await AssetService.addNewAsset(addNewAsset);
+      navigate("/assets");
+      toast.success("Asset added successfully!");
+      setIsModalOpen(false);
+      window.location.reload();
+
+    } catch (error) {
+      // Check if asset number already exists
+      toast.error("Asset number already exists");
+      setError(error.message);
+    }
   };
 
   return (
