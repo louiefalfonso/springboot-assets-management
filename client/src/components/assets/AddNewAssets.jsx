@@ -5,6 +5,7 @@ import AssetService from "../../services/AssetsService";
 
 const AddNewAssets = () => {
   
+  // Declare state variables
   const navigate = useNavigate();
   const params = useParams();
   const { id } = params;
@@ -18,9 +19,11 @@ const AddNewAssets = () => {
   const [location, setLocation] = useState("");
   const [rackNumber, setRackNumber] = useState("");
 
+  // State to store error message
   const [error, setError] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+  // Function to toggle modal
   const toggleModal = () => {
     setIsModalOpen(!isModalOpen);
   };

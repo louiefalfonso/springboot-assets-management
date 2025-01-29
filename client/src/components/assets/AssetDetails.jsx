@@ -9,6 +9,7 @@ import DeleteAsset from "./DeleteAsset";
 
 const AssetDetails = () => {
 
+  // Declare state variables
   const navigate = useNavigate();
   const params = useParams();
   const { id } = params;

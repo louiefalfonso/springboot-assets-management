@@ -5,14 +5,40 @@ import Modal from "../layout/Modal";
 import AssetService from "../../services/AssetsService";
 import AddNewAssets from "./AddNewAssets";
 
+import { RiFileSearchLine, RiAddCircleLine } from "react-icons/ri";
+
 const Assets = () => {
-  
+
+  // Declare state variables
   const [assets, setAssets] = useState([]);
+
+  // Pagination state variables
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 5;
+
+  // State to control modals
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+  // Function to toggle modal
   const toggleModal = () => {
     setIsModalOpen(!isModalOpen);
   };
+
+  // Function to handle page change
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
+
+  // Memoize the assets array to prevent unnecessary recalculations
+  const memoizedAssets = useMemo(() => assets, [assets]);
+
+  // Get current assets
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentAssets = memoizedAssets.slice(indexOfFirstItem, indexOfLastItem);
+
+  // Calculate total pages
+  const totalPages = Math.ceil(memoizedAssets.length / itemsPerPage);
 
   // Fetch asset data using useEffect
   useEffect(() => {
@@ -27,9 +53,6 @@ const Assets = () => {
     fetchAssets();
   }, []);
 
-  // Memoize the assets array to prevent unnecessary recalculations
-  const memoizedAssets = useMemo(() => assets, [assets]);
-
   return (
     <>
       <div className="flex flex-col gap-4 min-h-[calc(100vh-212px)]">
@@ -40,9 +63,10 @@ const Assets = () => {
               <button
                 type="button"
                 onClick={toggleModal}
-                className="btn py-1 px-3.5 text-xs bg-warning border border-warning rounded-md text-black transition-all duration-300 hover:bg-warning/[0.85] hover:border-warning/[0.85]"
+                className="btn flex items-center gap-1.5 bg-success border border-success rounded-md text-white transition-all duration-300 hover:bg-success/[0.85] hover:border-success/[0.85]"
               >
-                + Add Assets
+                <RiAddCircleLine />
+                Add New Asset
               </button>
             </div>
             <div className="overflow-auto">
@@ -58,7 +82,7 @@ const Assets = () => {
                   </tr>
                 </thead>
                 <tbody className="text-center">
-                  {memoizedAssets.map((asset) => (
+                  {currentAssets.map((asset) => (
                     <tr key={asset.id}>
                       <td>{asset.assetNumber}</td>
                       <td>{asset.brand}</td>
@@ -68,18 +92,41 @@ const Assets = () => {
                       </td>
                       <td>{asset.type}</td>
                       <td>
-                        <Link
-                          to={`/assets/${asset.id}`}
-                          className="btn py-1 px-3.5 text-xs bg-info border border-info rounded-md text-black transition-all duration-300 hover:bg-info/[0.85] hover:border-info/[0.85]"
+                        <button
+                          type="button"
+                          className="p-3 bg-purple border border-purple rounded-md text-white transition-all duration-300 hover:bg-purple/[0.85] hover:border-purple/[0.85]"
                         >
-                          View
-                        </Link>
+                          <Link to={`/assets/${asset.id}`}>
+                            <RiFileSearchLine />
+                          </Link>
+                        </button>
                       </td>
                     </tr>
                   ))}
                 </tbody>
-                
               </table>
+            </div>
+          </div>
+          <div className="p-5 bg-white border rounded border-black/10 dark:bg-darklight dark:border-darkborder">
+            <div className="overflow-auto ">
+              <div className="flex justify-center">
+                <ul className="inline-flex items-end">
+                  {Array.from({ length: totalPages }, (_, index) => (
+                    <li key={index + 1} className="mx-1">
+                      <button
+                        onClick={() => handlePageChange(index + 1)}
+                        className={`flex justify-center px-3 py-2 rounded transition text-muted hover:text-purple border border-black/10 hover:border-purple dark:border-darkborder dark:text-darkmuted dark:hover:text-purple dark:hover:border-purple ${
+                          currentPage === index + 1
+                            ? "rounded transition text-white bg-purple border border-purple"
+                            : ""
+                        }`}
+                      >
+                        {index + 1}
+                      </button>
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </div>
           </div>
         </div>

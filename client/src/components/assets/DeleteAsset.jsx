@@ -4,7 +4,8 @@ import toast, { Toaster } from "react-hot-toast";
 import AssetService from "../../services/AssetsService";
 
 const DeleteAsset = () => {
-    
+  
+  // Declare state variables
   const { id } = useParams();
   const navigate = useNavigate();
   const [assets, setAssets] = useState([]);
