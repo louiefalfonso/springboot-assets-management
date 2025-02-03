@@ -4,6 +4,7 @@ import asset_management.assetmanagement.dto.WarrantyStatusDto;
 import asset_management.assetmanagement.entity.WarrantyStatus;
 import asset_management.assetmanagement.repository.WarrantyStatusRepository;
 import asset_management.assetmanagement.service.WarrantyStatusService;
+import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -12,16 +13,12 @@ import java.util.List;
 
 @CrossOrigin("*")
 @RestController
-@RequestMapping("/api/v1/warrantystatus")
+@AllArgsConstructor
+@RequestMapping("/api/v1/warranty-status")
 public class WarrantyStatusController {
 
-    private final WarrantyStatusRepository warrantyStatusRepository;
-    private final WarrantyStatusService warrantyStatusService;
-
-    public WarrantyStatusController(WarrantyStatusRepository warrantyStatusRepository, WarrantyStatusService warrantyStatusService) {
-        this.warrantyStatusRepository = warrantyStatusRepository;
-        this.warrantyStatusService = warrantyStatusService;
-    }
+    private WarrantyStatusRepository warrantyStatusRepository;
+    private WarrantyStatusService warrantyStatusService;
 
     //POST - Create New Warranty Status REST API
     @PostMapping

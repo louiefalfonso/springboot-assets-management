@@ -4,6 +4,7 @@ import asset_management.assetmanagement.dto.StatusTrackingDto;
 import asset_management.assetmanagement.entity.StatusTracking;
 import asset_management.assetmanagement.repository.StatusTrackingRepository;
 import asset_management.assetmanagement.service.StatusTrackingService;
+import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -12,16 +13,12 @@ import java.util.List;
 
 @CrossOrigin("*")
 @RestController
-@RequestMapping("/api/v1/statustracking")
+@AllArgsConstructor
+@RequestMapping("/api/v1/status-tracking")
 public class StatusTrackingController {
 
-    private final StatusTrackingRepository statusTrackingRepository;
-    private final StatusTrackingService statusTrackingService;
-
-    public StatusTrackingController(StatusTrackingRepository statusTrackingRepository, StatusTrackingService statusTrackingService) {
-        this.statusTrackingRepository = statusTrackingRepository;
-        this.statusTrackingService = statusTrackingService;
-    }
+    private StatusTrackingRepository statusTrackingRepository;
+    private StatusTrackingService statusTrackingService;
 
     //POST - Create New Status Tracking REST API
     @PostMapping

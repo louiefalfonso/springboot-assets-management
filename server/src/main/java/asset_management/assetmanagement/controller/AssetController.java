@@ -4,6 +4,7 @@ import asset_management.assetmanagement.dto.AssetDto;
 import asset_management.assetmanagement.entity.Asset;
 import asset_management.assetmanagement.repository.AssetRepository;
 import asset_management.assetmanagement.service.AssetService;
+import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -12,16 +13,12 @@ import java.util.List;
 
 @CrossOrigin("*")
 @RestController
+@AllArgsConstructor
 @RequestMapping("/api/v1/assets")
 public class AssetController {
 
-    private final AssetService assetService;
-    private final AssetRepository assetRepository;
-
-    public AssetController(AssetService assetService, AssetRepository assetRepository) {
-        this.assetService = assetService;
-        this.assetRepository = assetRepository;
-    }
+    private AssetService assetService;
+    private AssetRepository assetRepository;
 
     //POST - Create New Asset REST API
     @PostMapping

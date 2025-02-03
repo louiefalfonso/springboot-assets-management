@@ -4,6 +4,7 @@ import asset_management.assetmanagement.dto.StatusHistoryDto;
 import asset_management.assetmanagement.entity.StatusHistory;
 import asset_management.assetmanagement.repository.StatusHistoryRepository;
 import asset_management.assetmanagement.service.StatusHistoryService;
+import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -12,16 +13,12 @@ import java.util.List;
 
 @CrossOrigin("*")
 @RestController
-@RequestMapping("/api/v1/statushistory")
+@AllArgsConstructor
+@RequestMapping("/api/v1/status-history")
 public class StatusHistoryController {
 
-    private final StatusHistoryRepository statusHistoryRepository;
-    private final StatusHistoryService statusHistoryService;
-
-    public StatusHistoryController(StatusHistoryRepository statusHistoryRepository, StatusHistoryService statusHistoryService) {
-        this.statusHistoryRepository = statusHistoryRepository;
-        this.statusHistoryService = statusHistoryService;
-    }
+    private StatusHistoryRepository statusHistoryRepository;
+    private StatusHistoryService statusHistoryService;
 
     //POST - Create New Status History REST API
     @PostMapping

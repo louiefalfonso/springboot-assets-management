@@ -21,37 +21,4 @@ public class WarrantyStatusDto {
     private LocalDate warrantyExpiry;
 
     private Long assetId;
-
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    public LocalDate getWarrantyExpiry() {
-        return warrantyExpiry;
-    }
-
-    public void setWarrantyExpiry(LocalDate warrantyExpiry) {
-        this.warrantyExpiry = warrantyExpiry;
-    }
-
-    public Long getAssetId() {
-        return assetId;
-    }
-
-    public void setAssetId(Long assetId) {
-        this.assetId = assetId;
-    }
 }

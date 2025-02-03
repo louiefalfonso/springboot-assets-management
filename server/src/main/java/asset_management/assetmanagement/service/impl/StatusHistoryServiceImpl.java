@@ -4,6 +4,7 @@ import asset_management.assetmanagement.dto.StatusHistoryDto;
 import asset_management.assetmanagement.entity.StatusHistory;
 import asset_management.assetmanagement.repository.StatusHistoryRepository;
 import asset_management.assetmanagement.service.StatusHistoryService;
+import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
@@ -11,16 +12,11 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
+@AllArgsConstructor
 public class StatusHistoryServiceImpl implements StatusHistoryService {
 
-    private final StatusHistoryRepository statusHistoryRepository;
-    private final ModelMapper modelMapper;
-
-    public StatusHistoryServiceImpl( StatusHistoryRepository statusHistoryRepository, ModelMapper modelMapper) {
-        this.statusHistoryRepository = statusHistoryRepository;
-        this.modelMapper = modelMapper;
-
-    }
+    private StatusHistoryRepository statusHistoryRepository;
+    private ModelMapper modelMapper;
 
     // REST API - Create New Status History
     @Override

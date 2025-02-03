@@ -4,6 +4,7 @@ import asset_management.assetmanagement.dto.StatusTrackingDto;
 import asset_management.assetmanagement.entity.StatusTracking;
 import asset_management.assetmanagement.repository.StatusTrackingRepository;
 import asset_management.assetmanagement.service.StatusTrackingService;
+import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
@@ -11,15 +12,11 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
+@AllArgsConstructor
 public class StatusTrackingServiceImpl implements StatusTrackingService {
 
-    private final StatusTrackingRepository statusTrackingRepository;
-    private final ModelMapper modelMapper;
-
-    public StatusTrackingServiceImpl(StatusTrackingRepository statusTrackingRepository, ModelMapper modelMapper) {
-        this.statusTrackingRepository = statusTrackingRepository;
-        this.modelMapper = modelMapper;
-    }
+    private StatusTrackingRepository statusTrackingRepository;
+    private ModelMapper modelMapper;
 
     // REST API - Create New Status Tracking
     @Override

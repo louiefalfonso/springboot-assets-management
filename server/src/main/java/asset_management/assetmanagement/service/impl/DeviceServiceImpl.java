@@ -4,6 +4,7 @@ import asset_management.assetmanagement.dto.DeviceDto;
 import asset_management.assetmanagement.entity.Device;
 import asset_management.assetmanagement.repository.DeviceRepository;
 import asset_management.assetmanagement.service.DeviceService;
+import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
@@ -11,15 +12,11 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
+@AllArgsConstructor
 public class DeviceServiceImpl implements DeviceService {
 
-    private final DeviceRepository deviceRepository;
-    private final ModelMapper modelMapper;
-
-    public DeviceServiceImpl(DeviceRepository deviceRepository, ModelMapper modelMapper) {
-        this.deviceRepository = deviceRepository;
-        this.modelMapper = modelMapper;
-    }
+    private DeviceRepository deviceRepository;
+    private ModelMapper modelMapper;
 
     // REST API - Create New Device
     @Override

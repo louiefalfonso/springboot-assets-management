@@ -4,6 +4,7 @@ import asset_management.assetmanagement.dto.AssetDto;
 import asset_management.assetmanagement.entity.Asset;
 import asset_management.assetmanagement.repository.AssetRepository;
 import asset_management.assetmanagement.service.AssetService;
+import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
@@ -11,15 +12,11 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
+@AllArgsConstructor
 public class AssetServiceImpl implements AssetService {
 
-    private final AssetRepository assetRepository;
-    private final ModelMapper modelMapper;
-
-    public AssetServiceImpl(AssetRepository assetRepository, ModelMapper modelMapper) {
-        this.assetRepository = assetRepository;
-        this.modelMapper = modelMapper;
-    }
+    private AssetRepository assetRepository;
+    private ModelMapper modelMapper;
 
     // REST API - Create New Asset
     @Override

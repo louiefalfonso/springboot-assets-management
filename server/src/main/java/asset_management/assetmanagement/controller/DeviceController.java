@@ -4,6 +4,7 @@ import asset_management.assetmanagement.dto.DeviceDto;
 import asset_management.assetmanagement.entity.Device;
 import asset_management.assetmanagement.repository.DeviceRepository;
 import asset_management.assetmanagement.service.DeviceService;
+import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -12,16 +13,12 @@ import java.util.List;
 
 @CrossOrigin("*")
 @RestController
+@AllArgsConstructor
 @RequestMapping("/api/v1/devices")
 public class DeviceController {
 
-    private final DeviceService deviceService;
-    private final DeviceRepository deviceRepository;
-
-    public DeviceController(DeviceService deviceService, DeviceRepository deviceRepository) {
-        this.deviceService = deviceService;
-        this.deviceRepository = deviceRepository;
-    }
+    private DeviceService deviceService;
+    private DeviceRepository deviceRepository;
 
     //POST - Create New Device REST API
     @PostMapping

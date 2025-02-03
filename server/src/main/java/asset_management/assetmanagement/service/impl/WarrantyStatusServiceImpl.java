@@ -4,6 +4,7 @@ import asset_management.assetmanagement.dto.WarrantyStatusDto;
 import asset_management.assetmanagement.entity.WarrantyStatus;
 import asset_management.assetmanagement.repository.WarrantyStatusRepository;
 import asset_management.assetmanagement.service.WarrantyStatusService;
+import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
@@ -11,15 +12,11 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
+@AllArgsConstructor
 public class WarrantyStatusServiceImpl implements WarrantyStatusService {
 
-    private final WarrantyStatusRepository warrantyStatusRepository;
-    private final ModelMapper modelMapper;
-
-    public WarrantyStatusServiceImpl(WarrantyStatusRepository warrantyStatusRepository, ModelMapper modelMapper) {
-        this.warrantyStatusRepository = warrantyStatusRepository;
-        this.modelMapper = modelMapper;
-    }
+    private WarrantyStatusRepository warrantyStatusRepository;
+    private ModelMapper modelMapper;
 
     // REST API - Create New Warranty Status
     @Override
