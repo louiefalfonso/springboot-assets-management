@@ -4,17 +4,16 @@ import { Link } from "react-router-dom";
 import Modal from "../layout/Modal";
 import AssetService from "../../services/AssetsService";
 import AddNewAssets from "./AddNewAssets";
-
 import { RiFileSearchLine, RiAddCircleLine } from "react-icons/ri";
 
 const Assets = () => {
-
+  
   // Declare state variables
   const [assets, setAssets] = useState([]);
 
   // Pagination state variables
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 5;
+  const itemsPerPage = 10;
 
   // State to control modals
   const [isModalOpen, setIsModalOpen] = useState(false);

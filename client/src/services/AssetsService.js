@@ -1,13 +1,12 @@
 import axios from "axios";
 
+
 const API_BASE_URL = import.meta.env.VITE_BASE_URI_ASSETS;
 
 const AssetsService = {
-  
   async addNewAsset(id) {
     try {
-      const response = await axios
-        .post(API_BASE_URL, id);
+      const response = await axios.post(API_BASE_URL, id);
       return response;
     } catch (error) {
       if (error.response.status === 400) {
@@ -40,4 +39,4 @@ const AssetsService = {
   },
 };
 
-export default AssetsService
+export default AssetsService;
