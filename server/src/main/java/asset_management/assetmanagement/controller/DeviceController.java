@@ -79,7 +79,7 @@ public class DeviceController {
 
     //GET - Get Deleted Device By ID REST API
     @GetMapping("/deleted/{id}")
-    public ResponseEntity<DeviceDto> getDeletedDeviceById(@PathVariable Long id) {
+    public ResponseEntity<DeviceDto> getDeletedDeviceById(@PathVariable("id") Long id) {
         DeviceDto deletedDevice = deviceService.getDeletedDeviceById(id);
         return ResponseEntity.ok(deletedDevice);
     }

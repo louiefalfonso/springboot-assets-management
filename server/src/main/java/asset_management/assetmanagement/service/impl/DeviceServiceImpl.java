@@ -69,7 +69,6 @@ public class DeviceServiceImpl implements DeviceService {
     }
 
 
-
     // REST API - Delete Device
     @Override
     public void deleteDevice(Long deviceId) {
