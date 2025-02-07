@@ -7,7 +7,7 @@ const API_BASE_URL = import.meta.env.VITE_BASE_URI_ASSETS;
 
 const assetService = {
 
-     addNewAsset: async (newAsset: Asset) => {
+    addNewAsset: async (newAsset: Asset) => {
         const response = await axios.post(API_BASE_URL, newAsset);
         return response.data;
     },
